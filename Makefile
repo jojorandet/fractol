@@ -6,7 +6,7 @@ DIR_SRC			=	./src
 DIR_BUILD		=	./build
 
 # Source and object files
-SOURCES			=	exit_function.c image.c keyboard_functions.c main.c mlx_setup.c 
+SOURCES			=	colours.c exit_function.c image.c keyboard_functions.c main.c mlx_setup.c shapes.c 
 SOURCES_NAME	=	$(basename $(SOURCES))
 OBJECTS			=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(SOURCES_NAME)))
 

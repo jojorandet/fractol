@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 14:44:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 18:10:31 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ typedef struct s_data
 	//number of bits per pixel (32) image depth
 	int		bytes_per_pixel; 
 	// number of bytes per pixel (/8)
-	int		size_line; 
+	int		line_length; 
 	//number of bytes in a row of the image including padding
 	int		endian;	
 	//big endian or little format, especially for RGB
 }	t_data;
 
-void	put_pixel(t_data *data, int x, int y, int color);
+void	my_mlx_put_pixel(t_data *data, int x, int y, int color);
 void	init_image(t_data *data);
 void	init_data(t_data *data);
 void	initialisation_mlx(t_data *data);

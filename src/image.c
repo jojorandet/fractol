@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:11:07 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/12/11 21:12:18 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 20:27:25 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,31 @@
 void	init_image(t_data *data)
 {
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img)
+	{
+		printf("Error in creating the image");
+		exit(EXIT_FAILURE);
+	}
 	data->addr = mlx_get_data_addr(
-		data->img,
-		&data->bpp,
-		&data->size_line, 
-		&data->endian);
+		data->img, //specifies the image to use
+		&data->bpp, //the number of pixels needed to represent a pixel colour
+		&data->line_length, //the number of bytes userd to store one line of the imahe in memory
+		&data->endian
+	);
+	if (!data)
+	{
+		printf("Error: failed to get image address and set param.");
+		exit(EXIT_FAILURE);
+	}
 	data->bytes_per_pixel = data->bpp / 8;
 }
 
-void	put_pixel(t_data *data, int x, int y, int color)
+void	my_mlx_put_pixel(t_data *data, int x, int y, int color)
 {
-	char	*dst;
+	char	*pixel;
 	long	offset;
 
-	offset = (y * data->size_line + x * data->bytes_per_pixel);
-	dst = data->addr + offset;
-	*(unsigned int*)dst = color;
+	offset = (y * data->line_length + x * data->bytes_per_pixel);
+	pixel = data->addr + offset;
+	*(unsigned int*)pixel = color;
 }

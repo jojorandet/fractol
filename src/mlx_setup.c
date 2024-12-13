@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:35:48 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 12:09:54 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 20:28:39 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,4 @@ void	initialisation_mlx(t_data *data)
 void	init_data(t_data *data)
 {
 	ft_memset(data, 0, sizeof(t_data));
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img = NULL;
-	data->img = NULL;
-	data->bpp = 0;
-	data->size_line = 0;
-	data->endian = 0;
 }
