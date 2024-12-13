@@ -6,18 +6,32 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 10:49:05 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/12/13 18:15:28 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 23:05:43 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int ac, char **av)
+void	parse_arguments(int argc, char **argv, t_data *data)
+{
+	if (argc < 2)
+	{
+		ft_putendl_fd("Not enough arguments", 1);
+		exit(EXIT_FAILURE);
+	}
+	if (ft_strncmp(argv[1], "mandel", 5) == 0)
+		data->fractal_type = 1;
+	
+
+}
+
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void)ac;
-	(void)av;
+	parse_arguments(argc, argv, &data);
+
+	(void)argv;
 	init_data(&data);
 	initialisation_mlx(&data);
 	init_image(&data);

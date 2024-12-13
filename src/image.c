@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:11:07 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/12/13 20:27:25 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 22:54:28 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_image(t_data *data)
 	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!data->img)
 	{
-		printf("Error in creating the image");
+		ft_printf("Error in creating the image");
 		exit(EXIT_FAILURE);
 	}
 	data->addr = mlx_get_data_addr(
@@ -29,7 +29,7 @@ void	init_image(t_data *data)
 	);
 	if (!data)
 	{
-		printf("Error: failed to get image address and set param.");
+		ft_printf("Error: failed to get image address and set param.");
 		exit(EXIT_FAILURE);
 	}
 	data->bytes_per_pixel = data->bpp / 8;

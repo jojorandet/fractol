@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 18:10:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/13 22:53:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # include "mlx.h"
 # include "ft_printf.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
@@ -61,8 +62,18 @@
 #  define DEBUG_MODE 1
 # endif
 
+typedef struct s_complex
+{
+	double	real;
+	double	imag;
+}	t_complex;
+
 typedef struct s_data
 {
+	int		fractal_type; // 1 = Mandelbrot 2 = Julia 3 = ship
+	
+
+	
 	void	*mlx; 
 	// pointer of system
 	void	*win;
@@ -79,7 +90,22 @@ typedef struct s_data
 	//number of bytes in a row of the image including padding
 	int		endian;	
 	//big endian or little format, especially for RGB
+	t_complex	c;
+	//complex number used for calculations
+	double		center_x;
+	// the center of the coordinates for the x value 
+	double		center_y;
+	// y coordinate for the cente fo the fractal
+	double		zoom;
+	// zoom level for scaling
+	double		scale_x;
+	// real axis scaling
+	double		scale_y;
+	//imagiinary axis scalong 
+	int			max_iterations;
+	//the max number of iterations for fractals 
 }	t_data;
+
 
 void	my_mlx_put_pixel(t_data *data, int x, int y, int color);
 void	init_image(t_data *data);
