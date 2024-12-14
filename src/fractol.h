@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 22:53:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/14 16:29:49 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_data
 	//poiter to the image created by mlx_new_image
 	char	*addr;
 	// address of the pixel data in the image 
-	int		bpp; 
+	int		bits_per_pixel; 
 	//number of bits per pixel (32) image depth
 	int		bytes_per_pixel; 
 	// number of bytes per pixel (/8)
@@ -104,13 +104,14 @@ typedef struct s_data
 	//imagiinary axis scalong 
 	int			max_iterations;
 	//the max number of iterations for fractals 
+	int			default_colour;
 }	t_data;
 
 
 void	my_mlx_put_pixel(t_data *data, int x, int y, int color);
 void	init_image(t_data *data);
-void	init_data(t_data *data);
-void	initialisation_mlx(t_data *data);
+void	data_init(&data);
+void	mlx_init(&data);
 void	*ft_memset(void	*b, int c, size_t len);
 int		ft_exit_fractol(t_data *data);
 int		ft_keyboard(int key, t_data *data);

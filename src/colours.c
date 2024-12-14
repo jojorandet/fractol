@@ -6,7 +6,21 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 20:58:54 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 20:58:56 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/14 15:19:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
+
+int	encode_rgb(int t, int r, int g, int b, int endian)
+{
+	
+	if (endian == 0)
+	{
+		return (b << 24 | g << 16 | r << 8 | t);
+	}
+	else
+	{
+		return (t << 24 | r << 16 | g << 8 | b);
+	}
+}

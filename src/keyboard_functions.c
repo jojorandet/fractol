@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:30:14 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/13 19:04:50 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/14 13:43:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_keyboard(int key, t_data *data)
 			{
 				mlx_pixel_put(data->mlx, data->win, x, y, colour);
 				x++;
+				colour++;
 			}
 			y++;
 		}
