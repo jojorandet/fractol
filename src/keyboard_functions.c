@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:30:14 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/14 13:43:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/14 17:22:02 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_keyboard(int key, t_data *data)
 	ft_printf("KEY : %d\n", key);
 	return (0);
 }
+
+
 
 
 

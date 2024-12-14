@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/14 16:29:49 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/14 17:38:38 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,19 @@ typedef struct s_data
 	int			max_iterations;
 	//the max number of iterations for fractals 
 	int			default_colour;
+
+	int			redraw_frame;
 }	t_data;
 
 
 void	my_mlx_put_pixel(t_data *data, int x, int y, int color);
+void	initialisation_mlx(t_data *data);
 void	init_image(t_data *data);
-void	data_init(&data);
-void	mlx_init(&data);
+void	init_data(t_data *data);
 void	*ft_memset(void	*b, int c, size_t len);
 int		ft_exit_fractol(t_data *data);
 int		ft_keyboard(int key, t_data *data);
+int		ft_mouse(int mouse, int x, int y, t_data *data);
+int		ft_redraw_frame(t_data *data);
 
 #endif
