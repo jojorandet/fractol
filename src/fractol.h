@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/14 17:38:38 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:45:28 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int		ft_exit_fractol(t_data *data);
 int		ft_keyboard(int key, t_data *data);
 int		ft_mouse(int mouse, int x, int y, t_data *data);
 int		ft_redraw_frame(t_data *data);
+void	ft_draw(t_data *data);
 
 #endif
