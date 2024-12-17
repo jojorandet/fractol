@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 21:44:41 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/14 15:40:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/17 12:53:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	add_complex(t_complex *z1, t_complex *z2)
+t_complex	add_complex(t_complex *z1, t_complex *z2)
 {
-	z1->real = z1->real + z2->real;
-	z1->imag = z1->imag + z2->imag;
+	return (t_complex){
+		.real = z1->real + z2->real,
+		.imag = z1->imag + z2->imag,
+	};
 }
 
-void	mult_complex(t_complex *z1, t_complex *z2)
+t_complex	mult_complex(t_complex *z1, t_complex *z2)
 {
-	z1->real = ((z1->real * z2->real) - (z2->imag * z2->imag));
-	z1->imag = ((z1->real * z2->imag) + (z1->imag * z2->real));
+	return (t_complex){
+		.real = (z1->real * z2->real) - (z1->imag * z2->imag),
+		.imag = (z1->real * z2->imag) + (z1->imag * z2->real),
+	};
 }
 
-void	square_complex(t_complex *z1)
+double	magnitude_complex(t_complex *z1)
 {
-	double	temp;
-
-	temp = (z1->real * z1->real) - (z1->imag * z1->imag);
-	z1->imag = 2.0 * z1->real * z1->imag;
-	z1->real = temp;
+	return ((z1->real * z1->real) + (z1->imag * z1->imag));
 }
 
 

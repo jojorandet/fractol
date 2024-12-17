@@ -6,7 +6,7 @@ DIR_SRC			=	./src
 DIR_BUILD		=	./build
 
 # Source and object files
-SOURCES			=	calculations.c colours.c drawing.c exit_function.c image.c julia.c keyboard_functions.c main.c mlx_setup.c mouse_functions.c 
+SOURCES			=	cleanup.c complex_utils.c events.c fractal_draw.c image_utils.c init_mlx.c main.c view.c 
 SOURCES_NAME	=	$(basename $(SOURCES))
 OBJECTS			=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(SOURCES_NAME)))
 
@@ -16,31 +16,18 @@ FLAGS			=	-Wall -Wextra -Werror -g
 # Paths to external libraries
 FT_PRINTF		=	./lib/ft_printf
 LIBFT 			=	./lib/libft
-LIBX_LINUX		=	./lib/minilibx-linux
-LIBX_MACOS		= 	./lib/minilibx-macos
-
-LIBS_INCLUDE_LINUX	=	-I$(FT_PRINTF) -I$(LIBFT) -I$(LIBX_LINUX)  # Include paths for headers on linux
-LIBS_INCLUDE_MACOS	=	-I$(FT_PRINTF) -I$(LIBFT) -I$(LIBX_MACOS)
-
-LIBS_LINK_DIR_LINUX	=	-L$(FT_PRINTF) -L$(LIBFT) -L$(LIBX_LINUX)  # Link directories
-LIBS_LINK_LINUX		=	-lftprintf -lft -lmlx -lXext -lX11 -lm -lz  # Libraries to link
-
-LIBS_LINK_DIR_MACOS	=	-L$(FT_PRINTF) -L$(LIBFT) -L$(LIBX_MACOS)  # Link directories
-LIBS_LINK_MACOS		=	-lftprintf -lft -lmlx -framework OpenGL -framework AppKit   # Libraries to link
-# Default rule
-
 #here I check which OS I am using 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
-	LIBS_INCLUDE 	= 	$(LIBS_INCLUDE_LINUX)
-	LIBS_LINK_DIR	= 	$(LIBS_LINK_DIR_LINUX)
-	LIBS_LINK		=	$(LIBS_LINK_LINUX)
-	LIBX			=	$(LIBX_LINUX)
+	LIBX			=	./lib/minilibx-linux
+	LIBS_INCLUDE 	= 	-I$(FT_PRINTF) -I$(LIBFT) -I$(LIBX) -I/usr/include
+	LIBS_LINK_DIR	= 	-L$(FT_PRINTF) -L$(LIBFT) -L$(LIBX) -L/usr/lib
+	LIBS_LINK		=	-lftprintf -lft -lmlx -lXext -lX11 -lm -lz
 else ifeq ($(UNAME_S), Darwin)
-	LIBS_INCLUDE 	= 	$(LIBS_INCLUDE_MACOS)
-	LIBS_LINK_DIR	= 	$(LIBS_LINK_DIR_MACOS)
-	LIBS_LINK		=	$(LIBS_LINK_MACOS)
-	LIBX			=	$(LIBX_MACOS)
+	LIBX			=	./lib/minilibx-macos
+	LIBS_INCLUDE 	= 	-I$(FT_PRINTF) -I$(LIBFT) -I$(LIBX)
+	LIBS_LINK_DIR	= 	-L$(FT_PRINTF) -L$(LIBFT) -L$(LIBX)
+	LIBS_LINK		=	-lftprintf -lft -lmlx -framework OpenGL -framework AppKit
 endif
 
 all: $(NAME)	
