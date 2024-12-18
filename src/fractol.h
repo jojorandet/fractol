@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/17 19:39:43 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/17 19:57:22 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	*ft_memset(void	*b, int c, size_t len);
 void	setup_hooks(t_data *data);
 int		ft_exit_fractol(t_data *data);
 void	put_pixel_to_view(t_data *data, double x, double y, int color);
+void	draw(t_data *data);
 void	view_draw(t_data *data, int (*get_colour)(t_complex));
 int		get_colour_test(t_complex z);
 void	cleanup(t_data *data);

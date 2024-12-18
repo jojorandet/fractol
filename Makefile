@@ -11,7 +11,7 @@ SOURCES_NAME	=	$(basename $(SOURCES))
 OBJECTS			=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(SOURCES_NAME)))
 
 # Compiler flags
-FLAGS			=	-Wall -Wextra -Werror -g
+FLAGS			=	-Wall -Wextra -Werror -g -DGL_SILENCE_DEPRECATION
 
 # Paths to external libraries
 FT_PRINTF		=	./lib/ft_printf
@@ -52,14 +52,12 @@ $(DIR_BUILD):
 clean:
 	make clean -C $(FT_PRINTF) # Recursive clean for ft_printf
 	make clean -C $(LIBFT)
-	make clean -C $(LIBX)
 	rm -rf $(DIR_BUILD)
 
 # Fully clean rule to remove the binary and objects
 fclean: clean
 	make fclean -C $(FT_PRINTF) # Recursive fclean for ft_printf
 	make fclean -C $(LIBFT)
-	make fclean -C $(LIBX)
 	rm -f $(NAME)
 
 # Rule to rebuild everything

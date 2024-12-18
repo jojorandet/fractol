@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 10:49:05 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/12/17 19:15:45 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/17 20:20:17 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	init_mlx(&data);
 	init_image(&data);
-	mlx_put_image_to_window(data.mlx, data.win, data.img, WIN_WIDTH, WIN_HEIGHT);
+	draw(&data);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	setup_hooks(&data);
 	mlx_loop(data.mlx);
 
