@@ -6,7 +6,7 @@ DIR_SRC			=	./src
 DIR_BUILD		=	./build
 
 # Source and object files
-SOURCES			=	cleanup.c complex_utils.c events.c fractal_draw.c image_utils.c init_mlx.c main.c view.c 
+SOURCES			=	cleanup.c complex_utils.c draw.c events.c image_utils.c init_data.c init_image.c init_mlx.c main.c view.c 
 SOURCES_NAME	=	$(basename $(SOURCES))
 OBJECTS			=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(SOURCES_NAME)))
 
