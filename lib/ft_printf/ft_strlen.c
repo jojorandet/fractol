@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_c.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jonas.voisard@gmail.com>         +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 15:56:22 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/10/22 23:50:13 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/10/23 10:08:02 by jrandet           #+#    #+#             */
+/*   Updated: 2024/10/23 16:31:58 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_c(va_list *args, t_format *fm)
+size_t	ft_strlen(const char *str)
 {
-	char	c;
+	const char	*start;
 
-	c = (char)va_arg(*args, int);
-	ft_run(fm, ft_put_pad(&c, 1, fm));
+	start = str;
+	while (*str)
+		str++;
+	return (str - start);
 }

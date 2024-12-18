@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 12:05:56 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/18 18:37:21 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,18 +115,22 @@ typedef struct s_data
 }	t_data;
 
 
-void	init_data(t_data *data);
-void	*ft_memset(void	*b, int c, size_t len);
-void	init_mlx(t_data *data);
-void	init_image(t_data *data);
-void	draw(t_data *data);
-void	view_draw(t_data *data, int (*get_colour)(t_complex));
-void	put_pixel_to_image(t_data *data, int x, int y, int color);
-void	put_pixel_to_view(t_data *data, double x, double y, int color);
-int		get_colour_test(t_complex z);
-void	setup_hooks(t_data *data);
-int		ft_exit_fractol(t_data *data);
-void	cleanup(t_data *data);
+void		init_data(t_data *data);
+void		*ft_memset(void	*b, int c, size_t len);
+void		init_mlx(t_data *data);
+void		init_image(t_data *data);
+void		draw(t_data *data);
+void		view_draw(t_data *data, int (*get_colour)(t_complex));
+void		put_pixel_to_image(t_data *data, int x, int y, int color);
+void		put_pixel_to_view(t_data *data, double x, double y, int color);
+int			get_colour_test(t_complex z);
+int			get_colour_test_damier(t_complex z);
+t_complex	add_complex(t_complex *z1, t_complex *z2);
+t_complex	mult_complex(t_complex *z1, t_complex *z2);
+double		magnitude_complex(t_complex *z1);
+void		setup_hooks(t_data *data);
+int			ft_exit_fractol(t_data *data);
+void		cleanup(t_data *data);
 
 #endif
 

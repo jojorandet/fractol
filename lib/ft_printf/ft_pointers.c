@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   ft_pointers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 18:08:05 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 18:36:00 by jrandet          ###   ########.fr       */
+/*   Created: 2024/10/22 12:18:08 by jrandet           #+#    #+#             */
+/*   Updated: 2024/10/23 17:12:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "ft_printf.h"
 
-void	setup_hooks(t_data *data)
+void	ft_pointers(unsigned long ptr, char *base,
+		unsigned int base_len, int *count)
 {
-	mlx_hook(data->win, 17, 0, ft_exit_fractol, data);
-	/*mlx_hook(data->win, 2, 1L << 0, ft_keyboard, data);
-	mlx_mouse_hook(data->win, ft_mouse, data);
-	mlx_loop_hook(data->mlx, ft_redraw_frame, data);*/
+	if (!ptr)
+	{
+		if (write(1, "0x0", 3) == -1)
+		{
+			*count = -1;
+			return ;
+		}
+		*count += 3;
+	}
+	else
+	{
+		if (write(1, "0x", 2) == -1)
+		{
+			*count = -1;
+			return ;
+		}
+		*count += 2;
+		ft_rputnbr_base(ptr, base, base_len, count);
+	}
 }
-int	ft_exit_fractol(t_data *data)
-{
-	cleanup(data);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-/*void	ft_keyboard(int key, t_data *data)
-{
-	
-}*/

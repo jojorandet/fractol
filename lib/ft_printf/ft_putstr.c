@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_p.c                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jonas.voisard@gmail.com>         +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 17:56:24 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/10/22 23:50:13 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/10/21 23:11:43 by jrandet           #+#    #+#             */
+/*   Updated: 2024/10/23 17:17:38 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_p(va_list *args, t_format *fm)
+void	ft_putstr(char *s, int *count)
 {
-	unsigned long	n;
-	char			str[24];
-	int				str_len;
-
-	n = va_arg(*args, unsigned long);
-	str[0] = '0';
-	str[1] = 'x';
-	str_len = ft_uitoa(str + 2, n, "0123456789abcdef");
-	ft_run(fm, ft_put_pad(str, str_len + 2, fm));
+	if (!s)
+	{
+		if (write(1, "(null)", 6) == -1)
+		{
+			*count = -1;
+			return ;
+		}
+		*count += 6;
+		return ;
+	}
+	while (*s)
+	{
+		if (write(1, s++, 1) == -1)
+		{
+			*count = -1;
+			return ;
+		}
+		(*count)++;
+	}
 }
