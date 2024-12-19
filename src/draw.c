@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:33:00 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/19 14:44:42 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 22:47:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-//higher level rendering functions like draw, get colour etc
-
-/*int get_colour_test_damier(t_complex z)
-{
-    // Get the parity of the real and imaginary parts
-    int real_parity = (int)(z.real) % 2;
-    int image_parity = (int)(z.imag) % 2;
-
-    // Check if both real and imaginary parts have the same parity
-    if (real_parity == image_parity)
-        return (0xffffff);  // White square
-    else
-        return (0x000000);  // Colored square
-}*/
 
 int		get_colour_test_damier(t_complex z)
 {

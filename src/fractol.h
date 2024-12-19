@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/19 22:44:36 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 23:05:15 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,10 @@ typedef struct s_data
 	//number of bits per pixel (32) image depth
 	int		bytes_per_pixel; 
 	// number of bytes per pixel (/8)
-	int		line_length; 
+	int		bytes_per_line; 
 	//number of bytes in a row of the image including padding
+	int		pixels_per_line;
+
 	int		endian;	
 	//big endian or little format, especially for RGB
 	t_complex	c;

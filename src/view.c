@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:34:11 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 18:18:18 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 22:52:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+
+void	init_view(t_data *data)
+{
+	
+}
+
 
 void	view_draw(t_data *data, int (*get_colour)(t_complex))
 {
