@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/19 14:39:38 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:39:45 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@
 #  define DEBUG_MODE 1
 # endif
 
+
+enum
+{
+	MOUSE_LEFT = 1,
+	MOUSE_RIGHT = 2,
+	MOUSE_MIDDLE = 3, 
+	MOUSE_SCROLL_UP = 4,
+	MOUSE_SCROLL_DOWN = 5,
+};
+
+enum
+{
+	KEY_PRESSED = 2,
+	KEY_RELEASED = 3,
+	MOUSE_PRESSED = 4,
+	MOUSE_RELEASED = 5,
+	MOUSE_MOVE = 6,
+	WINDOW_CLOSED = 17,
+
+};
 typedef	struct s_viewport
 {
 	int			center_x;
