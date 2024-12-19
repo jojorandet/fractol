@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:31:47 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/19 23:11:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 23:15:01 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void init_image(t_data *data)
 	}
 	data->bytes_per_pixel = data->bits_per_pixel / 8;
 	data->pixels_per_line = data->bytes_per_line / data->bytes_per_pixel;
-	view_create(data);
+	init_view(data);
 }

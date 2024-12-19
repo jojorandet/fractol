@@ -6,18 +6,27 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:34:11 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/19 22:52:36 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 23:20:46 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 
-void	init_view(t_data *data)
+t_viewport	init_view(t_data *data)
 {
+	t_viewport *view;
+
+	data->view.center_x = (WIN_WIDTH/2);
+	data->view.center_y = (WIN_HEIGHT/2);
+	data->view.scale = SCALE;
+	data->view.pixel_to_view = data->view.scale / data->pixels_per_line; // 8 / 400 = 0.05
+	data->view.view_to_pixel = data->pixels_per_line / data->view.scale; // 400/8 = 0.02
+	printf("scale is %d\n", SCALE);
+	printf("pixels per line is %d\n", data->pixels_per_line);
+	printf("ratio from pixel to viewport is %f\n", data->view.pixel_to_view);
 	
 }
-
 
 void	view_draw(t_data *data, int (*get_colour)(t_complex))
 {
