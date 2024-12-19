@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_percent.c                                :+:      :+:    :+:   */
+/*   ft_printf_putchar.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvoisard <jonas.voisard@gmail.com>         +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 18:45:49 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/10/22 23:50:13 by jvoisard         ###   ########.fr       */
+/*   Created: 2024/10/21 12:28:48 by jrandet           #+#    #+#             */
+/*   Updated: 2024/12/18 16:47:39 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format_percent(va_list *args, t_format *fm)
+void	ft_printf_putchar(char c, int *count)
 {
-	(void)args;
-	fm->put_count = ft_put_pad("%", 1, fm);
+	if (write(1, &c, 1) != -1)
+		(*count)++;
+	else
+		*count = -1;
 }

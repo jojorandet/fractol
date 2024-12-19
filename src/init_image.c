@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 11:31:47 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 11:31:54 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 17:12:40 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	init_image(t_data *data)
 {
-	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->img = malloc(sizeof(data));
 	if (!data->img)
+	{
+		ft_printf("Error in malloc of the image");
+		ft_exit_fractol(data);
+	}
+	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+ //mlx new image only takes care of the raw image buffer without any additional metadata
+ 	if (!data->img)
 	{
 		ft_printf("Error in creating the image");
 		ft_exit_fractol(data);

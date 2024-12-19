@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 14:44:01 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 12:12:50 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 22:44:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@
 #  define DEBUG_MODE 1
 # endif
 
+
+enum
+{
+	MOUSE_LEFT = 1,
+	MOUSE_RIGHT = 2,
+	MOUSE_MIDDLE = 3, 
+	MOUSE_SCROLL_UP = 4,
+	MOUSE_SCROLL_DOWN = 5,
+};
+
+enum
+{
+	KEY_PRESSED = 2,
+	KEY_RELEASED = 3,
+	MOUSE_PRESSED = 4,
+	MOUSE_RELEASED = 5,
+	MOUSE_MOVE = 6,
+	WINDOW_CLOSED = 17,
+
+};
 typedef	struct s_viewport
 {
 	int			center_x;
@@ -122,7 +142,7 @@ void	init_image(t_data *data);
 void	draw(t_data *data);
 void	view_draw(t_data *data, int (*get_colour)(t_complex));
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
-/*void	put_pixel_to_view(t_data *data, double x, double y, int color);*/
+void	put_pixel_to_view(t_data *data, double x, double y, int color);
 int		get_colour_test(t_complex z);
 void	setup_hooks(t_data *data);
 int		ft_exit_fractol(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:34:11 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 11:58:25 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/18 18:18:18 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	view_draw(t_data *data, int (*get_colour)(t_complex))
 	t_complex z;
 
 	y = 0;
+	
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;

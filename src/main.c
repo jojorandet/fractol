@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 10:49:05 by jvoisard          #+#    #+#             */
-/*   Updated: 2024/12/18 11:54:34 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:33:43 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	main(int argc, char **argv)
 	init_image(&data);
 	draw(&data);
 	setup_hooks(&data);
-	mlx_loop(data.mlx);
-
+	mlx_loop(data.mlx); // will loop over the given mlx pointer and all other hooks will be takewn intp account in the order they were anounced 
+	//mlx loop will keep the program running, it will keep detecting the different events 
 	if (DEBUG_MODE)
 		printf("mode debug enabled\n");
 	return (0);
