@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:33:00 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/18 18:36:04 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/19 14:44:42 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,28 @@ int		get_colour_test_damier(t_complex z)
 {
 	int	real_parity = (int)(z.real) % 2;
 	int	image_parity = (int)(z.imag) % 2;
-
-	// int sign = ((z.real * z.imag) >= 0);
-
-	// if ((z.real > 0 && z.imag > 0) || (z.real < 0 && z.imag < 0))
-	// if (sign > 0)
-	if (1)
+	
+	if (real_parity < 0)
+		real_parity = -real_parity;
+	if (image_parity < 0)
+		image_parity = -image_parity;
+	if (real_parity == image_parity)
 	{
-		if (real_parity == image_parity)
-			return (0xffffff);
+		if (z.real * z.imag >= 0)
+			return (0);
 		else
-			return (0x000000);
+			return (0xffffff);
 	}
-	// else
-	// {
-    //     if (real_parity == image_parity)
-    //         return (0x000000);  // Colored square
-    //     else
-    //         return (0xffffff);  // White squar
-	// }
+	else 
+	{
+		if (z.real * z.imag >= 0)
+			return (0xffffff);
+		else 
+			return (0);
+	}
 	return (0);
 }
+
 
 /*int	get_colour_test(t_complex z)
 {
