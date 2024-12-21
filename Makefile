@@ -4,10 +4,12 @@ DIR_BIN		=	./bin
 DIR_INCLUDE =	./include
 DIR_SRC 	=	./src
 
-OBEJCTS		= 	$(addsuffix .o, ($(DIR_SRC) / $(basename $(SRCS))))
+SOURCES		=	main.c init_data.c
+SOURCE_NAME	=	$(basename $(SOURCES))
+OBJECTS		= 	$(addsuffix .o, $(addprefix $(DIR_BIN)/, $(SOURCE_NAME)))
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitise=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 FT_PRINTF	= ./include/ft_printf
 FT_LIBFT	= ./include/libft 
@@ -15,48 +17,55 @@ FT_LIBFT	= ./include/libft
 UNAME_S		= $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 MINILIBX_PATH	=	./include/minilibx_linux
-INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(LIBFT) -I$(MINILIBX_PATH)
+INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(LIBFT) -I$(MINILIBX_PATH) -I$(DIR_INCLUDE)
 #allows the compiler to know where to get the header files. 
-LIBRARY_PATHS	=	-L$(FT_PRINTF) -I$(LIBFT) -I$(MINILIBX_PATH)
+LIBRARY_PATHS	=	-L$(FT_PRINTF) -L$(LIBFT) -L$(MINILIBX_PATH)
 #tels the linker where to find the static libraries .a (libft.a) (pre-compiled code)
-LIBRARIES		= -lft -lmx -lX11 -lXext -lm
+LIBRARIES		= -lft -lftprintf -lmlx -lX11 -lXext -lm -lz
 #-l flags tells the linker which libraries to use during the linking stage
-else ifew ($(UNAME_S), Darwin)
+else ifeq ($(UNAME_S), Darwin)
 MINILIBX_PATH	=	./include/minilibx_macos
-INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(FT_LIBFT) -I$(MINILIBX_PATH)
-LIBRARY_PATHS	=	-L$(FT_PRINTF) -I$(FT_LIBFT) -I$(MINILIBX_PATH)
-LIBRARIES		=	-Lmlx -lmlx -framework OpenGL -framework Appkit
+INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(FT_LIBFT) -I$(MINILIBX_PATH) -I$(DIR_INCLUDE)
+LIBRARY_PATHS	=	-L$(FT_PRINTF) -L$(FT_LIBFT) -L$(MINILIBX_PATH)
+LIBRARIES		=	-lft -lftprintf -lmlx -framework OpenGL -framework Appkit
 endif
 
 all: $(NAME)
 
-$(NAME):	$(OBEJCTS)
+$(NAME):	$(OBJECTS)
+	@echo "Building $(NAME)"
 	@make -C $(FT_LIBFT)
 #build the printf library printf.a
 	@make -C $(FT_PRINTF)
 	@make -C $(MINILIBX_PATH)
-	@cc $(OBJECTS) $(FLAGS) $(LIBRARY_PATHS) $(LIBRARIES) -o $@
+	@$(CC) $(OBJECTS) $(CFLAGS) $(LIBRARY_PATHS) $(LIBRARIES) -o $@
+	@echo "$(NAME) built successfully and ready to execute using ./fractol"
 #compile everything into the final program.
 
 $(DIR_BIN)/%.o: $(DIR_SRC)/%.c | $(DIR_BIN) 
 # the pipe means it depends on the existence of dir bin, if it does not exist then go do the rule below
-	@cc $(FLAGS) $(LIBRARIES) -c $^ -o $@
+	@echo "Compiling $<"
+	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $^ -o $@
 #dollar is all the dependencies / prerequisites, @ represents the target, in this case $(DIR_BIN)/%.o
-$(DIR_BIN)
-	@mkdir -p @
+$(DIR_BIN):
+	@mkdir -p $@
 
 clean:
-	make clean $(FT_PRINTF)
-	make clean $(LIBFT)
-	rm -rf $(DIR_BIN)
+	@echo "cleaning projects..."
+	@make clean -C $(FT_PRINTF)
+	@make clean -C $(LIBFT)
+	@rm -rf $(DIR_BIN)
+	@echo "Clean complete"
 
 fclean:
-	make fclean -C $(FT_PRINTF)
-	make fclean -C $(FT_LIBFT)
-	rm -rf $(NAME)
+	@echo "Full clean in process..."
+	@make fclean -C $(FT_PRINTF)
+	@make fclean -C $(FT_LIBFT)
+	@rm -rf $(NAME)
+	@echo "Full clean complete."
 #deletes the fractol executable 
 
 re: fclean all
 #this cleans everythingm and then it executes all, meaning it builds again
 
-.PHONY = re clean fclean all 
+.PHONY: re clean fclean all 

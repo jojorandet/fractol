@@ -15,25 +15,26 @@ OBJECTS		=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(FUNCTIONS)))
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar -cr $@ $^
+	@ar -cr $@ $^
+	@echo "$(NAME) compiled successfully"
 
 $(DIR_BUILD)/%.o: $(DIR_SRC)/%.c | $(DIR_BUILD)
-	cc $(FLAGS) -c $^ -o $@
+	@cc $(FLAGS) -c $^ -o $@
 
 $(DIR_BUILD):
-	mkdir $(DIR_BUILD)
+	@mkdir $(DIR_BUILD)
 
 so: $(OBJECTS)
-	cc -nostartfiles -shared -o libft.so $(NAME_SO) $(OBJECTS)
+	@cc -nostartfiles -shared -o libft.so $(NAME_SO) $(OBJECTS)
 
 test: all ./.test.c
-	cc $(FLAGS) -L ./ -lftprintf ./.test.c -o test
+	@cc $(FLAGS) -L ./ -lftprintf ./.test.c -o test
 
 clean:
-	rm -rf $(DIR_BUILD)
+	@rm -rf $(DIR_BUILD)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(NAME_SO)
+	@rm -f $(NAME)
+	@rm -f $(NAME_SO)
 
 re: fclean all

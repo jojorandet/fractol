@@ -60,20 +60,21 @@ OBJECT_FILES_BONUS = $(SOURCE_FILES_BONUS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECT_FILES)
-	ar rcs $(NAME) $(OBJECT_FILES)
+	@ar rcs $(NAME) $(OBJECT_FILES)
+	@echo "$(NAME) compiled successfully"
 
 #make bonus will be called to compile both the mandatory and the bonus files
 bonus: $(OBJECT_FILES) $(OBJECT_FILES_BONUS)
-	ar rcs $(NAME) $(OBJECT_FILES) $(OBJECT_FILES_BONUS)
+	@ar rcs $(NAME) $(OBJECT_FILES) $(OBJECT_FILES_BONUS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I . -c $^ -o $@
+	@$(CC) $(CFLAGS) -I . -c $^ -o $@
 
 clean:
-	rm -f $(OBJECT_FILES) $(OBJECT_FILES_BONUS)
+	@rm -f $(OBJECT_FILES) $(OBJECT_FILES_BONUS)
 
 fclean: clean 
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 15:51:15 by jrandet           #+#    #+#             */
-/*   Updated: 2024/10/23 17:21:34 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/21 17:33:38 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	tests(int *count, const char *s, va_list args)
 {	
 	if (*s == 'c')
-		ft_putchar(va_arg(args, int), count);
+		ft_printf_putchar(va_arg(args, int), count);
 	else if (*s == 's')
 		ft_putstr(va_arg(args, char *), count);
 	else if (*s == 'p')
