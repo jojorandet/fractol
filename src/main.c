@@ -6,11 +6,28 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/21 19:29:40 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/23 17:39:15 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	ft_exit_fractol(t_data *data, char *error)
+{
+	if (data)
+	{
+		if (data->image.img)
+			mlx_destroy_image(data->mlx_ptr, data->img);
+		if (data->win)
+			mlx_destroy_window(data->mlx_ptr, data->win);
+	}
+	if (error)
+	{
+		ft_printf("Error: %s!", error);
+		exit(EXIT_SUCCESS); //signifies the program exited because of an error 
+	}
+	exit(EXIT_SUCCESS);
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,19 +40,13 @@ int	main(int argc, char **argv)
 
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
-	data.win = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "new_window"); 
-	y = WIN_HEIGHT * 0.1;
-	while (y < WIN_HEIGHT * 0.9)
-	{
-		x = WIN_WIDTH * 0.1;
-		while (x < WIN_WIDTH * 0.9)
-		{
-			mlx_pixel_put(data.mlx_ptr, data.win, x, y, 0xff0000);
-			x++;
-		}
-		y++;
-	}
-	//mlx_pixel_put(data.mlx_ptr, data.win, 400,400, 0xff0000);
+	if (!data.mlx_ptr)
+		ft_exit_fractol(&data);
+	init_img(&data);
+	/*mouse_events(&data);
+	keys_events(&data);
+	colours(&data);
+	view_init(&data);*/
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

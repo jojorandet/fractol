@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 17:57:03 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/23 17:35:05 by jrandet          ###   ########.fr       */
+/*   Created: 2024/12/23 17:59:52 by jrandet           #+#    #+#             */
+/*   Updated: 2024/12/23 18:00:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	init_data(t_data *data)
-{
-	data->mlx_ptr = NULL;
-	data->win = NULL;
-	data->image.img = NULL;
-	data->image.image_start = NULL;
-	data->image.bitspp = 0;
-	data->image.bytes_per_row = 0;
-	data->image.endian = 0;
-}
