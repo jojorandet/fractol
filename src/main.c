@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 20:30:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 21:23:01 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
-		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!");
-	ft_printf("Win width: %d, win height: %d", WIN_WIDTH, WIN_HEIGHT);
+		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!\n");
+		ft_printf("Win width: %d\n win height: %d\n", WIN_WIDTH, WIN_HEIGHT);
 	data.win = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test square");
 	if(!data.win)
-		ft_exit_fractol(&data, "Error: Win not initialized, SGV!");
-	ft_printf("window created successfully!");
+		ft_exit_fractol(&data, "Error: Win not initialized, SGV\n!");
+	ft_printf("window created successfully!\n\n");
 	init_img(&data);
 	color = 0xff0000;
 	test_draw_square(&data, 0, 0, color);
