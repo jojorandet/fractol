@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 13:02:28 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 19:46:16 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include <stdio.h>
 #include <math.h>
 
-# define WIN_WIDTH 200
-# define WIN_HEIGHT 50
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 700
 
 typedef struct s_view
 {
@@ -55,6 +55,7 @@ typedef struct s_data
 
 void	init_data(t_data *data);
 void	init_img(t_data *data);
+void	test_draw_square(t_data *data, int x, int y, int color);
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
 
 int	check_limit_upper(int value, int limit_upper);

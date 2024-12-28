@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:57:03 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/26 14:55:41 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 18:54:06 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	init_data(t_data *data)
 {
-	data->mlx_ptr = NULL;
-	data->win = NULL;
-	data->image.img = NULL;
-	data->image.addr = NULL;
-	data->image.bitspp = 0;
-	data->image.bytes_per_row = 0;
-	data->image.endian = 0;
+	if (!data)
+		return ;
+	ft_bzero(data, sizeof(t_data));
 }
+
+//sizet is the result of the sizeof operator 
+//check if the data pointer is not NULL. else segmentation fault.
+//there is no need to explicitely call everything individually 

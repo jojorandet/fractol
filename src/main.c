@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 12:09:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 20:16:53 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_exit_fractol(t_data *data, char *error)
 	if (data)
 	{
 		if (data->image.img)
-			mlx_destroy_image(data->mlx_ptr, data->img);
+			mlx_destroy_image(data->mlx_ptr, data->image.img);
 		if (data->win)
 			mlx_destroy_window(data->mlx_ptr, data->win);
 	}
@@ -32,22 +32,29 @@ void	ft_exit_fractol(t_data *data, char *error)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		color;
 	
 	(void)argc;
 	(void)argv;
-	int x;
-	int y;
 
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
-		ft_exit_fractol(&data, "Error: Mlx unitialiyed!");
+		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!");
+	ft_printf("Win width: %d, win height: %d", WIN_WIDTH, WIN_HEIGHT);
+	data.win = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test square");
+	if(!data.win)
+		ft_exit_fractol(&data, "Error: Win not initialized, SGV!");
+	ft_printf("window created successfully!");
 	init_img(&data);
+	color = 0xff0000;
+	test_draw_square(&data, 100, 100, color);
 	/*mouse_events(&data);
 	keys_events(&data);
 	colours(&data);
 	view_init(&data);*/
-	mlx_loop(data.mlx_ptr);
+	mlx_put_image_to_window(data.mlx_ptr, data.win, data.image.img, 0, 0);
+	mlx_loop(&data.mlx_ptr);
 	return (0);
 }
 
