@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 20:16:24 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 20:30:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	test_draw_square(t_data *data, int x, int y, int color)
 	int square_end_x;
 	int square_end_y;
 	int	start_x;
-	int square_size;
 
-	square_size = 50;
-	square_end_x = check_limit_upper(x + square_size, WIN_WIDTH);
-	square_end_y = check_limit_upper(y + square_size, WIN_HEIGHT);
+	square_end_x = check_limit_upper(x + WIN_WIDTH, WIN_WIDTH);
+	square_end_y = check_limit_upper(y + WIN_HEIGHT, WIN_HEIGHT);
 	while (y < square_end_y)
 	{
 		start_x = x;
@@ -33,7 +31,9 @@ void	test_draw_square(t_data *data, int x, int y, int color)
 		y++;
 	}
 }
-
+//originally, i would pass on 100. square end is 100 and square y is 100 because both were within bounds.
+// i did not have the 50 added meaning : 100 < 800 yes, return 100 so square end is 100.
+//while 100 < 100  (it would not enter the loop)
 void	put_pixel_to_image(t_data *data, int x, int y, int color)
 {
 	char	*dst;

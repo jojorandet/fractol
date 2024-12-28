@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 20:16:53 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 20:30:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	ft_printf("window created successfully!");
 	init_img(&data);
 	color = 0xff0000;
-	test_draw_square(&data, 100, 100, color);
+	test_draw_square(&data, 0, 0, color);
 	/*mouse_events(&data);
 	keys_events(&data);
 	colours(&data);
