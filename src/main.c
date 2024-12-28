@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/23 17:39:15 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 12:09:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
 	if (!data.mlx_ptr)
-		ft_exit_fractol(&data);
+		ft_exit_fractol(&data, "Error: Mlx unitialiyed!");
 	init_img(&data);
 	/*mouse_events(&data);
 	keys_events(&data);
