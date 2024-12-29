@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/29 17:31:04 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 19:06:38 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	get_color(t_complex z)
 {
+	while ()
 }
 
 void	draw_grid(t_data *data)
