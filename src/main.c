@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/29 16:36:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 19:17:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 	ft_printf("window created successfully!\n\n");
 	init_img(&data);
 	draw_grid(&data);
+	view_draw(&data, 100, 700);
 	//draw_grid(&data);
 	/*mouse_events(&data);
 	keys_events(&data);
