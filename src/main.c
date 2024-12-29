@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:23:01 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 16:36:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,28 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 
+	printf("Pointer size: %zu bytes\n", sizeof(void *));
 	init_data(&data);
 	data.mlx_ptr = mlx_init();
+	ft_printf("\n\n\n\n%p\n\n", data.mlx_ptr);
 	if (!data.mlx_ptr)
 		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!\n");
-		ft_printf("Win width: %d\n win height: %d\n", WIN_WIDTH, WIN_HEIGHT);
+	ft_printf("Win width: %d\n win height: %d\n", WIN_WIDTH, WIN_HEIGHT);
 	data.win = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test square");
 	if(!data.win)
 		ft_exit_fractol(&data, "Error: Win not initialized, SGV\n!");
 	ft_printf("window created successfully!\n\n");
 	init_img(&data);
-	color = 0xff0000;
-	test_draw_square(&data, 0, 0, color);
+	draw_grid(&data);
+	//draw_grid(&data);
 	/*mouse_events(&data);
 	keys_events(&data);
 	colours(&data);
 	view_init(&data);*/
 	mlx_put_image_to_window(data.mlx_ptr, data.win, data.image.img, 0, 0);
-	mlx_loop(&data.mlx_ptr);
+	ft_printf("\n\n\n\n%p\n\n", data.mlx_ptr);
+
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }
 

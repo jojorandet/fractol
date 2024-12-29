@@ -3,34 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:36:40 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 17:40:01 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+//i will go through my entire image. i will need to calculate the real and the imaginary part
+	//z.real is the equivalent of x
+	//z.imag is the equivalent of y
 
-/*void	view_draw(t_data *data)
+	//data I have : center_x and center_y which will serve as a base 
+	// I will have to first calculate with the pixels, and then translate it back to view
+	//use the view to pixel ratio
+void	view_draw(t_data *data, void(*get_color)(void))
 {
-	int x;
-	int y;
+	//now that I have the z.real and imag
 
-	x = 0;
-	y = 0; //for now, then it will take coordinates
-	//i had pixels, but now with my viewport, I have a 
-	
-	//as i go from left to right etc. I will go pixel by pixel and with a function determine if i can colour or not
-	//nested while loop
-	//start from the top corner (0,0)
-}*/
+	int			x;
+	int			y;
+	int			color;
+	t_complex	z;
 
-/*void	draw_lines(t_data *data)
-{
-	
-}*/
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while(x < WIN_WIDTH)
+		{
+			z.real = (x - data->view.center_x) * data->view.pixel_to_view;
+			z.im = -(y - data->view.center_y) * data->view.pixel_to_view;
+			color = getcolor(z); // i will get an int value, rgb which will colour the pixel
+			put_pixel_to_image(data, x, y, color);
+			
+			//the complex coordinates are only used for the math part. 
+			// pixel put to image works directly with the pixel and will colour the pixel using the offset calculation
+			//the pixel will be coloured according to the calculations done in the fractal space. 
+		}
+	}
+
+}
+
+
 
 void	view_init(t_data *data)
 {

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:52:29 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 14:29:06 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 
-void	test_draw_grid(t_data *data, int x, int x, int color)
+/*void	test_draw_grid(t_data *data, int x, int x, int color)
 {
 	//to make it shoter, center_x is equal to data->view.center_x
 	//same for center_y
@@ -24,9 +24,9 @@ void	test_draw_grid(t_data *data, int x, int x, int color)
 
 	//with x = 0
 	//while x is smaller than win width, then i will send putpixel(data, int x, center_y, in this case 400 (x will be 0 and increase))
-	//pixel_offset = y * img->bytes_per_row + x * img->bytespp;
+	//pixel_offset = y * img->bytes_per_line + x * img->bytespp;
 	//center_y will always stay the same SO: pixel offset = center_y(400) * ??? bytesperrow but i dont know what is it
-}
+}*/
 
 void	test_draw_square(t_data *data, int x, int y, int color)
 {
@@ -41,7 +41,7 @@ void	test_draw_square(t_data *data, int x, int y, int color)
 		start_x = x;
 		while (start_x < square_end_x)
 		{
-			put_pixel_to_image(data, start_x, y, color);
+			put_pixel_to_image(data, start_x, y, color * start_x + y + y * y);
 			start_x++;
 		}
 		y++;
@@ -50,6 +50,7 @@ void	test_draw_square(t_data *data, int x, int y, int color)
 //originally, i would pass on 100. square end is 100 and square y is 100 because both were within bounds.
 // i did not have the 50 added meaning : 100 < 800 yes, return 100 so square end is 100.
 //while 100 < 100  (it would not enter the loop)
+
 void	put_pixel_to_image(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -57,7 +58,7 @@ void	put_pixel_to_image(t_data *data, int x, int y, int color)
 	t_img	*img;
 
 	img = &data->image; //img will replace this (shorter, line too long)
-	pixel_offset = y * img->bytes_per_row + x * img->bytespp; //transfer from 2d to 1d, for example y = 3 and x = 5: (4*100 + 5*4 = 420)
+	pixel_offset = y * img->size_line + x * img->bytespp; //transfer from 2d to 1d, for example y = 3 and x = 5: (4*100 + 5*4 = 420)
 	if (pixel_offset >= (img->total_bytes))
 	{
 		ft_printf("Out of bounds. Total bytes: %d, offset: %d, x: %d, y: %d\n", img->total_bytes, pixel_offset, x, y);
@@ -78,7 +79,7 @@ void	init_img(t_data *data)
 	data->image.addr =  mlx_get_data_addr( //this is the pointer to the begining of the dimage buffer 
 			data->image.img, // img is the pointer to the high level image.
 			&data->image.bitspp, //tells us ehow many bits, in this case 32 are contained in one pixel, 4 bytes
-			&data->image.bytes_per_row, // how many bytes per row or per line 
+			&data->image.size_line, // how many bytes per row or per line 
 			&data->image.endian); //from side to side which is the least significant byte
 	if (!data->image.addr)
 	{
@@ -86,8 +87,8 @@ void	init_img(t_data *data)
 		return ; 
 	}
 	data->image.bytespp = data->image.bitspp / 8; // one byte is made of 8 bits
-	data->image.pixels_per_line = data->image.bytes_per_row / data->image.bytespp;
-	data->image.total_bytes = data->image.bytes_per_row * WIN_HEIGHT; //in memory represented as one singular space in memory. If a coordinate is above or below 
+	data->image.pixels_per_line = data->image.size_line / data->image.bytespp;
+	data->image.total_bytes = data->image.size_line * WIN_HEIGHT; //in memory represented as one singular space in memory. If a coordinate is above or below 
 	//the allocated memory, there is an error. it would be a memory error. 
 	view_init(data);
 }

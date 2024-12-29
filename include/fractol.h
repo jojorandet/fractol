@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:40:29 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/29 17:22:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800 //to do: check why this does not update
 # define SCALE 4
+
+typedef struct s_complex
+{
+	double real;
+	double im;
+}	t_complex;
 
 typedef struct s_view
 {
@@ -43,8 +49,8 @@ typedef struct s_img
 	int		bytespp; // how many bytes per pixel, 8 bits in 1 byte, 32/8 = 4
 	int		total_bytes;
 	int		pixels_per_line;
-	int		bytes_per_row;
-	int		endian;;
+	int		size_line;
+	int		endian;
 }	t_img;
 
 typedef struct s_data
@@ -60,8 +66,10 @@ void	init_data(t_data *data);
 void	init_img(t_data *data);
 void	test_draw_square(t_data *data, int x, int y, int color);
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
-
 void	view_init(t_data *data);
+//void	view_draw(t_data *data);
+void	draw_grid(t_data *data);
+void	get_color(t_data *data);
 
 int	check_limit_upper(int value, int limit_upper);
 int check_limit_lower(int value, int limit_lower);

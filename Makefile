@@ -4,22 +4,22 @@ DIR_BIN		=	./bin
 DIR_INCLUDE =	./include
 DIR_SRC 	=	./src
 
-SOURCES		=	main.c init_data.c init_img.c math.c view.c
+SOURCES		=	main.c init_data.c init_img.c view.c math.c
 SOURCE_NAME	=	$(basename $(SOURCES))
 OBJECTS		= 	$(addsuffix .o, $(addprefix $(DIR_BIN)/, $(SOURCE_NAME)))
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
-
+#CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -g -fsanitize=address
 FT_PRINTF	= ./include/ft_printf
 FT_LIBFT	= ./include/libft 
 
 UNAME_S		= $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 MINILIBX_PATH	=	./include/minilibx_linux
-INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(LIBFT) -I$(MINILIBX_PATH) -I$(DIR_INCLUDE)
+INCLUDE_FLAGS	=	-I$(FT_PRINTF) -I$(FT_LIBFT) -I$(MINILIBX_PATH) -I$(DIR_INCLUDE)
 #allows the compiler to know where to get the header files. 
-LIBRARY_PATHS	=	-L$(FT_PRINTF) -L$(LIBFT) -L$(MINILIBX_PATH)
+LIBRARY_PATHS	=	-L$(FT_PRINTF) -L$(FT_LIBFT) -L$(MINILIBX_PATH)
 #tels the linker where to find the static libraries .a (libft.a) (pre-compiled code)
 LIBRARIES		= -lft -lftprintf -lmlx -lX11 -lXext -lm -lz
 #-l flags tells the linker which libraries to use during the linking stage
@@ -53,11 +53,11 @@ $(DIR_BIN):
 clean:
 	@echo "cleaning projects..."
 	@make clean -C $(FT_PRINTF)
-	@make clean -C $(LIBFT)
+	@make clean -C $(FT_LIBFT)
 	@rm -rf $(DIR_BIN)
 	@echo "Clean complete"
 
-fclean:
+fclean: clean
 	@echo "Full clean in process..."
 	@make fclean -C $(FT_PRINTF)
 	@make fclean -C $(FT_LIBFT)
