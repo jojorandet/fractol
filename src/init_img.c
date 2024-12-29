@@ -6,11 +6,27 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:27:11 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 21:52:29 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+
+void	test_draw_grid(t_data *data, int x, int x, int color)
+{
+	//to make it shoter, center_x is equal to data->view.center_x
+	//same for center_y
+
+	//then I do one while thing for the x lines (vertical) and one for the y (horizontal)
+	//void	put_pixel_to_image(t_data *data, int x, int y, int color)
+	//to draw a line, i will always have the same x for different ys and the same y for different xs
+
+	//with x = 0
+	//while x is smaller than win width, then i will send putpixel(data, int x, center_y, in this case 400 (x will be 0 and increase))
+	//pixel_offset = y * img->bytes_per_row + x * img->bytespp;
+	//center_y will always stay the same SO: pixel offset = center_y(400) * ??? bytesperrow but i dont know what is it
+}
 
 void	test_draw_square(t_data *data, int x, int y, int color)
 {

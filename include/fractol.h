@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/28 21:37:05 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/28 21:40:29 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <math.h>
 
 # define WIN_WIDTH 800
-# define WIN_HEIGHT 800
+# define WIN_HEIGHT 800 //to do: check why this does not update
 # define SCALE 4
 
 typedef struct s_view
