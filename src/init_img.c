@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/29 14:29:06 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/30 17:36:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 	//center_y will always stay the same SO: pixel offset = center_y(400) * ??? bytesperrow but i dont know what is it
 }*/
 
-void	test_draw_square(t_data *data, int x, int y, int color)
+void	draw_square(t_data *data, int x, int y, int color)
 {
 	int square_end_x;
 	int square_end_y;
@@ -47,9 +47,6 @@ void	test_draw_square(t_data *data, int x, int y, int color)
 		y++;
 	}
 }
-//originally, i would pass on 100. square end is 100 and square y is 100 because both were within bounds.
-// i did not have the 50 added meaning : 100 < 800 yes, return 100 so square end is 100.
-//while 100 < 100  (it would not enter the loop)
 
 void	put_pixel_to_image(t_data *data, int x, int y, int color)
 {
@@ -57,15 +54,15 @@ void	put_pixel_to_image(t_data *data, int x, int y, int color)
 	long	pixel_offset;
 	t_img	*img;
 
-	img = &data->image; //img will replace this (shorter, line too long)
-	pixel_offset = y * img->size_line + x * img->bytespp; //transfer from 2d to 1d, for example y = 3 and x = 5: (4*100 + 5*4 = 420)
+	img = &data->image;
+	pixel_offset = y * img->size_line + x * img->bytespp;
 	if (pixel_offset >= (img->total_bytes))
 	{
-		ft_printf("Out of bounds. Total bytes: %d, offset: %d, x: %d, y: %d\n", img->total_bytes, pixel_offset, x, y);
+		printf("Out of bounds. Total bytes: %d, offset: %ld, x: %d, y: %d\n", img->total_bytes, pixel_offset, x, y);
 		ft_exit_fractol(data, "Error: offset larger than image buffer.\n");
 	}
-	dst = img->addr + pixel_offset; //move the dest pointer in the 1 d array from 0 to the 420th address
-	*(unsigned int*)dst = color; // Write the color value to the pixel's memory location
+	dst = img->addr + pixel_offset;
+	*(unsigned int*)dst = color;
 }
 
 void	init_img(t_data *data)
@@ -89,11 +86,4 @@ void	init_img(t_data *data)
 	data->image.bytespp = data->image.bitspp / 8; // one byte is made of 8 bits
 	data->image.pixels_per_line = data->image.size_line / data->image.bytespp;
 	data->image.total_bytes = data->image.size_line * WIN_HEIGHT; //in memory represented as one singular space in memory. If a coordinate is above or below 
-	//the allocated memory, there is an error. it would be a memory error. 
-	view_init(data);
 }
-
-//each dot represents a byte, so a pixel. 
-/*--------------------------*/
-/*                          */
-/*---------------------------*/

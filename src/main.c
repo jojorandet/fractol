@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/29 19:17:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2024/12/30 19:04:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,45 @@ void	ft_exit_fractol(t_data *data, char *error)
 	}
 	if (error)
 	{
-		ft_printf("Error: %s!", error);
+		printf("Error: %s!", error);
 		exit(EXIT_SUCCESS); //signifies the program exited because of an error 
 	}
 	exit(EXIT_SUCCESS);
+}
+
+void	prepare_fractol(t_data *data, int argc, char **argv)
+{
+	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+	{
+		data->fractal.name = "mandelbrot";
+		data->fractal.base_iteration = 100;
+		data->fractal.zoom = 1.0;
+	}
+	else if (ft_strncmp(argv[1], "julia", 5) == 0)
+	{
+		data->fractal.name = "julia"; //allows my fractal to render on its own 
+		data->fractal.base_iteration = 150;
+		data->fractal.zoom = 1.5;
+	}
+	else
+	{
+		ft_exit_fractol(data, "Invalid fractal type, please type julia or mandelbrot");
+	}
+	//max iteration will be changed as we go
+	data->fractal.max_iterations = data->fractal.base_iteration;	
+}
+
+void	init_fractol(t_data *data)
+{
+	init_data(&data);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!\n");
+	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test square");
+	if(!data->win)
+		ft_exit_fractol(&data, "Error: Win not initialized, SGV\n!");
+	init_img(&data);
+	view_init(&data);
 }
 
 int	main(int argc, char **argv)
@@ -34,44 +69,13 @@ int	main(int argc, char **argv)
 	t_data	data;
 	int		color;
 	
-	(void)argc;
-	(void)argv;
-
-	printf("Pointer size: %zu bytes\n", sizeof(void *));
-	init_data(&data);
-	data.mlx_ptr = mlx_init();
-	ft_printf("\n\n\n\n%p\n\n", data.mlx_ptr);
-	if (!data.mlx_ptr)
-		ft_exit_fractol(&data, "Error: Mlx unitialized, SGV!\n");
-	ft_printf("Win width: %d\n win height: %d\n", WIN_WIDTH, WIN_HEIGHT);
-	data.win = mlx_new_window(data.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test square");
-	if(!data.win)
-		ft_exit_fractol(&data, "Error: Win not initialized, SGV\n!");
-	ft_printf("window created successfully!\n\n");
-	init_img(&data);
+	if (argc < 2)
+		ft_exit_fractol(NULL, "Please enter a valid number of arguments");
+	init_fractol(&data);
+	parse_arguments(&data, argc, argv);
 	draw_grid(&data);
-	view_draw(&data, 100, 700);
-	//draw_grid(&data);
-	/*mouse_events(&data);
-	keys_events(&data);
-	colours(&data);
-	view_init(&data);*/
-	mlx_put_image_to_window(data.mlx_ptr, data.win, data.image.img, 0, 0);
-	ft_printf("\n\n\n\n%p\n\n", data.mlx_ptr);
-
+	mlx_put_image_to_window(data.mlx_ptr, data.win, data.image.img, 0, 0); // move sompelace else 
 	mlx_loop(data.mlx_ptr);
+
 	return (0);
 }
-
-//no need to pass the address of the pointer as the mlx is already a pointer which contains
-//the address rendered mlx_init()
-
-//win is a pointer which contains the address of the window created by mlx_new_window
-//mlx window returns a void * pointer which is a pointer to the insides of the window that we do not need to see
-//mlx returns a void pointer, and it can directly be assigned to the void *win pointer
-
-//for edxample, malloc returns a void pointer because it does not know what it will be allocazed 
-
-
-// to dereference a void pointer, you need to cast it a type. else it will not work. 
-// for example void *ptr = &x, printf("%d", *(int *)ptr)
