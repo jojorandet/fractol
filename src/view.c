@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 16:59:04 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 19:08:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	view_draw(t_data *data) //void(*get_color)(void))
 		}
 		y++;
 	}
-	printf("for x: %d and y: %d, the z.real is: %f and the z.imag is %f", x, y, data->z.real, data->z.im);
 }
 
 void	view_init(t_data *data)

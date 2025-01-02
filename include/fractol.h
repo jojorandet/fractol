@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 18:27:14 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 19:03:01 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ enum // mouse clicks
 	LEFT_CLICK = 1,
 	RIGHT_CLICK = 2,
 	MIDDLE_CLICK = 3,
-	SCROLL_FORWARD = 4,
-	SCROLL_BACKWARD = 5,
+	SCROLL_BACKWARD = 4,
+	SCROLL_FORWARD = 5,
 };
 typedef struct s_complex
 {
@@ -96,7 +96,7 @@ void	init_img(t_data *data);
 
 void	event_init(t_data *data);
 int		handle_key_down(int key_code, t_data *data);
-int		handle_mouse_down(int mouse_button, t_data *data);
+int		handle_mouse_down(int mouse_down, int x, int y, t_data *data);
 
 
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
