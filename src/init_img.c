@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/30 17:36:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 15:03:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,6 @@
 	//pixel_offset = y * img->bytes_per_line + x * img->bytespp;
 	//center_y will always stay the same SO: pixel offset = center_y(400) * ??? bytesperrow but i dont know what is it
 }*/
-
-void	draw_square(t_data *data, int x, int y, int color)
-{
-	int square_end_x;
-	int square_end_y;
-	int	start_x;
-
-	square_end_x = check_limit_upper(x + WIN_WIDTH, WIN_WIDTH);
-	square_end_y = check_limit_upper(y + WIN_HEIGHT, WIN_HEIGHT);
-	while (y < square_end_y)
-	{
-		start_x = x;
-		while (start_x < square_end_x)
-		{
-			put_pixel_to_image(data, start_x, y, color * start_x + y + y * y);
-			start_x++;
-		}
-		y++;
-	}
-}
 
 void	put_pixel_to_image(t_data *data, int x, int y, int color)
 {

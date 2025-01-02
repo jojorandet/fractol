@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/30 19:12:26 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 15:27:25 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void	view_draw(t_data *data) //void(*get_color)(void))
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
-		while(j < WIN_WIDTH)
+		while(x < WIN_WIDTH)
 		{
-			data->z.real = (x - data->view.center_x) * data->view.pixel_to_view;
-			data->z.im = -(y - data->view.center_y) * data->view.pixel_to_view;
-			color = calculate_fractol_color(data, z);
+			z.real = (x - data->view.center_x) * data->view.pixel_to_view;
+			z.im = -(y - data->view.center_y) * data->view.pixel_to_view;
+			color = draw_square(data, z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}
 		y++;
 	}
-	ft_printf("for x: %d and y: %d, the z.real is: %f and the z.imag is %f", x, y, data->z.real, data->z.im);
+	printf("for x: %d and y: %d, the z.real is: %f and the z.imag is %f", x, y, data->z.real, data->z.im);
 }
 
 void	view_init(t_data *data)

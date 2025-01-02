@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2024/12/30 19:00:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 15:02:44 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ typedef struct s_complex
 typedef struct s_fractal
 {
 	char	*name; // name of fracta
-	int		base_iteration; //the initial number of iterations when the program is launched 
+	//int		base_iteration; //the initial number of iterations when the program is launched 
 	//ensures we have enough iterations at the base level
 	int		max_iterations; //max iterations will depend on the zoom level.
-	double	zoom;
+	double	scale;
 }	t_fractal;
 
 typedef struct s_view
@@ -75,15 +75,16 @@ typedef struct s_data
 
 void	init_data(t_data *data);
 void	init_img(t_data *data);
-void	test_draw_square(t_data *data, int x, int y, int color);
+//void	test_draw_square(t_data *data, int x, int y, int color);
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
 void	view_init(t_data *data);
-void	view_draw(t_data *data, int x, int y);
-int		color_fractal(t_data *data, t_complex z);
+void	view_draw(t_data *data);
+int		draw_square(t_data *data, t_complex z);
+//int		color_fractal(t_data *data, t_complex z);
 
 
-int	check_limit_upper(int value, int limit_upper);
-int check_limit_lower(int value, int limit_lower);
+//int	check_limit_upper(int value, int limit_upper);
+//int check_limit_lower(int value, int limit_lower);
 
 
 void	ft_exit_fractol(t_data *data, char *error);
