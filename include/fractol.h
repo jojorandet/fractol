@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 15:02:44 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 18:27:14 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,24 @@
 # define WIN_HEIGHT 800 //to do: check why this does not update
 # define SCALE 4
 
+enum // events 
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+enum // mouse clicks 
+{
+	LEFT_CLICK = 1,
+	RIGHT_CLICK = 2,
+	MIDDLE_CLICK = 3,
+	SCROLL_FORWARD = 4,
+	SCROLL_BACKWARD = 5,
+};
 typedef struct s_complex
 {
 	double real;
@@ -44,10 +62,10 @@ typedef struct s_view
 {
 	int		center_x;
 	int		center_y;
+	double	x[WIN_WIDTH];
+	double	y[WIN_HEIGHT];
 	double	scale;
 	double	pixel_to_view;
-	double	view_to_pixel;
-
 }	t_view;
 
 typedef struct s_img
@@ -75,12 +93,18 @@ typedef struct s_data
 
 void	init_data(t_data *data);
 void	init_img(t_data *data);
-//void	test_draw_square(t_data *data, int x, int y, int color);
+
+void	event_init(t_data *data);
+int		handle_key_down(int key_code, t_data *data);
+int		handle_mouse_down(int mouse_button, t_data *data);
+
+
 void	put_pixel_to_image(t_data *data, int x, int y, int color);
 void	view_init(t_data *data);
+void	view_update(t_data *data);
+void	render(t_data *data);
 void	view_draw(t_data *data);
 int		draw_square(t_data *data, t_complex z);
-//int		color_fractal(t_data *data, t_complex z);
 
 
 //int	check_limit_upper(int value, int limit_upper);

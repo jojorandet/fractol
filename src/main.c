@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 14:54:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/02 17:38:59 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	init_fractol(t_data *data)
 	if(!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
 	init_img(data);
-	view_init(data);
 }
 int	main(int argc, char **argv)
 {
@@ -72,10 +71,8 @@ int	main(int argc, char **argv)
 	//if (argc < 2)
 		//ft_exit_fractol(NULL, "Please enter a valid number of arguments");
 	init_fractol(&data);
-	view_draw(&data);
-	//prepare_fractol(&data, argc, argv);
-
-	mlx_put_image_to_window(data.mlx_ptr, data.win, data.image.img, 0, 0); // move sompelace else 
+	event_init(&data);
+	view_init(&data);
 	mlx_loop(data.mlx_ptr);
 
 	return (0);
