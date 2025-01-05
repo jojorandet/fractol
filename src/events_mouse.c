@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 13:40:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 14:59:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int	handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data)
 {
-	(void)x;
-	(void)y;
-
 	if (mouse_down == M_SCROLL_FORWARD)
-		zoom(data, x, y, 1);
+	{
+		zoom(data, x, y, 1 + ZOOM);
+		return (0);
+	}
 	else if (mouse_down == M_SCROLL_BACKWARD)
-		zoom(data, x, y, -1);
+	{
+		zoom(data, x, y, 1 - ZOOM);
+		return (0);
+	}
 	return (0);
 }
 

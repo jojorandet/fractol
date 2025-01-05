@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 14:11:23 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 14:22:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	view_draw(t_m_struct *data) //void(*get_color)(void))
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
-		z.im = data->view.y[y];
+		z.im = data->view.y[y]; //all the values in this are the imaginary view coordinates 
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			z.real = data->view.x[x];
-			color = draw_square(z);
+			z.real = data->view.x[x]; //according to the ppixel where I am, I already calculated the z.real for all the xs
+			color = draw_square(z); //this takes the z.real and z.imag
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}

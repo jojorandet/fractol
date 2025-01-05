@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 13:38:30 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 14:59:57 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ enum
 #	define WIN_WIDTH 800
 #	define WIN_HEIGHT 800
 #	define SCALE 4
+#	define ZOOM 0.2
 
 enum // events for macos 
 {
@@ -153,7 +154,7 @@ void	render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
 int		draw_square(t_complex z);
 
-void	zoom(t_m_struct *data, int x, int y, int zoom);
+void	zoom(t_m_struct *data, int x, int y, double zoom);
 
 
 //int	check_limit_upper(int value, int limit_upper);
