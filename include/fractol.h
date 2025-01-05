@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 14:59:57 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 19:10:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,35 @@ enum
 #	define WIN_HEIGHT 800
 #	define SCALE 4
 #	define ZOOM 0.2
+#	define COL_TAB_SIZE 16
 
 enum // events for macos 
 {
-	ON_KEYDOWN = KeyPress,
-	ON_KEYUP = KeyRelease,
-	ON_MOUSEDOWN = ButtonPress,
-	ON_MOUSEUP = ButtonRelease,
-	ON_MOUSEMOVE = MotionNotify,
-	ON_EXPOSE = Expose,
-	ON_DESTROY = DestroyNotify,
+	ON_KEYDOWN		= KeyPress,
+	ON_KEYUP		= KeyRelease,
+	ON_MOUSEDOWN	= ButtonPress,
+	ON_MOUSEUP		= ButtonRelease,
+	ON_MOUSEMOVE	= MotionNotify,
+	ON_EXPOSE		= Expose,
+	ON_DESTROY		= DestroyNotify,
 };
 enum // mouse clicks for macos 
 {
-	M_LEFT_CLICK = 1,
-	M_RIGHT_CLICK = 2,
-	M_MIDDLE_CLICK = 3,
-	M_SCROLL_BACKWARD = 4,
-	M_SCROLL_FORWARD = 5,
+	M_LEFT_CLICK		= 1,
+	M_RIGHT_CLICK		= 2,
+	M_MIDDLE_CLICK		= 3,
+	M_SCROLL_BACKWARD	= 4,
+	M_SCROLL_FORWARD	= 5,
 };
 enum
 {
-	K_W = 119,
-	K_S = 115,
-	K_LEFT = 65361,
-	K_UP = 65362,
-	K_RIGHT = 65363,
-	K_DOWN = 65364,
-	K_ESCP = 65307,
+	K_W		= 119,
+	K_S		= 115,
+	K_LEFT	= 65361,
+	K_UP	= 65362,
+	K_RIGHT	= 65363,
+	K_DOWN	= 65364,
+	K_ESCP	= 65307,
 };
 # endif
 typedef struct s_complex
@@ -96,16 +97,6 @@ typedef struct s_complex
 	double real;
 	double im;
 }	t_complex;
-
-typedef struct s_fractal
-{
-	char	*name; // name of fracta
-	//int		base_iteration; //the initial number of iterations when the program is launched 
-	//ensures we have enough iterations at the base level
-	int		max_iterations; //max iterations will depend on the zoom level.
-	double	scale;
-}	t_fractal;
-
 typedef struct s_view
 {
 	int		center_x;
@@ -130,12 +121,12 @@ typedef struct s_image
 
 typedef struct s_m_struct
 {
-	void	*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
-	void	*win;
+	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
+	void		*win;
 	t_myimage	image;
-	t_view	view;
-	t_complex z;
-	t_fractal fractal;
+	t_view		view;
+	t_complex 	z;
+	t_complex	c;
 	
 }	t_m_struct;
 
@@ -159,7 +150,7 @@ void	zoom(t_m_struct *data, int x, int y, double zoom);
 
 //int	check_limit_upper(int value, int limit_upper);
 //int check_limit_lower(int value, int limit_lower);
-
+float	ft_atof(char *s);
 
 void	ft_exit_fractol(t_m_struct *data, char *error);
 

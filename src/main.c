@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 12:42:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 19:17:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,6 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 	exit(EXIT_SUCCESS);
 }
 
-/*void	prepare_fractol(t_data *data, int argc, char **argv)
-{
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
-	{
-		data->fractal.name = "mandelbrot";
-		data->fractal.max_iteration = 100;
-		data->fractal.scale = SCALE;
-	}
-	else if (ft_strncmp(argv[1], "julia", 5) == 0)
-	{
-		data->fractal.name = "julia"; //allows my fractal to render on its own 
-		data->fractal.max_iteration = 150;
-		data->fractal.zoom = 1.5;
-	}
-	else
-	{
-		ft_exit_fractol(data, "Invalid fractal type, please type 1 or 2");
-	}
-	//max iteration will be changed as we go
-	data->fractal.max_iterations = data->fractal.base_iteration;	
-}*/
-
 void	init_fractol(t_m_struct *data)
 {
 	init_data(data);
@@ -66,13 +44,11 @@ void	init_fractol(t_m_struct *data)
 int	main(int argc, char **argv)
 {
 	t_m_struct	data;
-	
 	(void)argc;
 	(void)argv;
-	//int		color;
 
 	//if (argc < 2)
-		//ft_exit_fractol(NULL, "Please enter a valid number of arguments");
+		//ft_exit_fractol(NULL, "Please enter a valid number of arguments!");
 	init_fractol(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);

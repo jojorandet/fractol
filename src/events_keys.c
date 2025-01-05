@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:18:38 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 13:20:24 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 18:01:07 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	handle_key_down(int key_code, t_m_struct *data)
 {
-	printf("The key pressed is %d\n", key_code);
-	
 	if (key_code == K_W)
 		data->view.scale *= 0.99;
 	if (key_code == K_S)

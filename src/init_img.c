@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 11:59:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 18:01:59 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	put_pixel_to_image(t_m_struct *data, int x, int y, int color)
 {
-	char	*dst;
-	long	pixel_offset;
+	char		*dst;
+	long		pixel_offset;
 	t_myimage	*img;
 
 	img = &data->image;

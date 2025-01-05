@@ -4,7 +4,7 @@ DIR_BIN		=	./bin
 DIR_INCLUDE =	./include
 DIR_SRC 	=	./src
 
-SOURCES		=	main.c init_data.c init_img.c view.c math.c draw_fractal.c render.c events_mouse.c events_keys.c zoom.c
+SOURCES		=	main.c init_data.c init_img.c view.c math.c draw_fractal.c render.c events_mouse.c events_keys.c zoom.c ft_atof.c
 SOURCE_NAME	=	$(basename $(SOURCES))
 OBJECTS		= 	$(addsuffix .o, $(addprefix $(DIR_BIN)/, $(SOURCE_NAME)))
 
