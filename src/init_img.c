@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/04 17:36:37 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 11:59:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_pixel_to_image(t_main *data, int x, int y, int color)
+void	put_pixel_to_image(t_m_struct *data, int x, int y, int color)
 {
 	char	*dst;
 	long	pixel_offset;
-	t_image	*img;
+	t_myimage	*img;
 
 	img = &data->image;
 	pixel_offset = y * img->size_line + x * img->bytespp;
@@ -30,9 +30,9 @@ void	put_pixel_to_image(t_main *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	init_img(t_main *data)
+void	init_img(t_m_struct *data)
 {
-	t_image	*img;
+	t_myimage	*img;
 
 	img = &data->image;
 	img->data = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);

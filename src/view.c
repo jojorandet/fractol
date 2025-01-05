@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/04 17:43:07 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 14:11:23 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	view_draw(t_main *data) //void(*get_color)(void))
+void	view_draw(t_m_struct *data) //void(*get_color)(void))
 {
 	int			x;
 	int			y;
@@ -27,7 +27,7 @@ void	view_draw(t_main *data) //void(*get_color)(void))
 		while (x < WIN_WIDTH)
 		{
 			z.real = data->view.x[x];
-			color = draw_square(data, z);
+			color = draw_square(z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}
@@ -35,7 +35,7 @@ void	view_draw(t_main *data) //void(*get_color)(void))
 	}
 }
 
-void	view_init(t_main *data)
+void	view_init(t_m_struct *data)
 {
 	if (!data)
 		ft_exit_fractol(data, "data is NULL");
@@ -45,7 +45,7 @@ void	view_init(t_main *data)
 	view_update(data);
 }
 
-void	view_update(t_main *data)
+void	view_update(t_m_struct *data)
 {
 	int		i;
 	t_view	*view;
@@ -61,7 +61,7 @@ void	view_update(t_main *data)
 	i = 0;
 	while (i < WIN_HEIGHT)
 	{
-		view->y[i] = (i - view->center_y) * view->pixel_to_view;
+		view->y[i] = -(i - view->center_y) * view->pixel_to_view;
 		i++;
 	}
 	render(data);

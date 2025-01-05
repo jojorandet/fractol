@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events_mouse.c                                     :+:      :+:    :+:   */
+/*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 13:40:08 by jrandet          ###   ########.fr       */
+/*   Created: 2025/01/05 13:33:36 by jrandet           #+#    #+#             */
+/*   Updated: 2025/01/05 13:38:34 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data)
+void	zoom(t_m_struct *data, int x, int y, int zoom) // refactored the zooming in
 {
 	(void)x;
 	(void)y;
 
-	if (mouse_down == M_SCROLL_FORWARD)
-		zoom(data, x, y, 1);
-	else if (mouse_down == M_SCROLL_BACKWARD)
-		zoom(data, x, y, -1);
-	return (0);
-}
-
-void	event_mouse_init(t_m_struct *data)
-{
-	mlx_hook(data->win, ON_MOUSEDOWN, ButtonPressMask, handle_mouse_down, data);
+	if (zoom == 1)
+	{
+		data->view.scale *= 1.01;
+		view_update(data);
+	}
+	if (zoom == -1)
+	{
+		data->view.scale *= 0.95;
+		view_update(data);
+	}
 }

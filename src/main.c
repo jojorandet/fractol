@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/04 17:41:59 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 12:42:21 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_exit_fractol(t_main *data, char *error)
+void	ft_exit_fractol(t_m_struct *data, char *error)
 {
 	if (data)
 	{
@@ -51,7 +51,7 @@ void	ft_exit_fractol(t_main *data, char *error)
 	data->fractal.max_iterations = data->fractal.base_iteration;	
 }*/
 
-void	init_fractol(t_main *data)
+void	init_fractol(t_m_struct *data)
 {
 	init_data(data);
 	data->mlx_ptr = mlx_init();
@@ -65,14 +65,17 @@ void	init_fractol(t_main *data)
 
 int	main(int argc, char **argv)
 {
-	t_main	data;
-	int		color;
-	int		x;
-	int		y;
+	t_m_struct	data;
+	
+	(void)argc;
+	(void)argv;
+	//int		color;
+
 	//if (argc < 2)
 		//ft_exit_fractol(NULL, "Please enter a valid number of arguments");
 	init_fractol(&data);
-	event_init(&data);
+	event_mouse_init(&data);
+	events_keys_init(&data);
 	view_init(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/04 17:36:37 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 13:38:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
-//# include "ft_printf.h"
-# include <mlx.h>
+//# include "ft_printf.h
 # include <stdio.h>
 # include <math.h>
 
+# ifdef __APPLE__ // if it detects we are on mac
+# include <mlx.h>
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 800 //to do: check why this does not update
 # define SCALE 4
 
-enum // events 
+enum // events for macos 
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 				4,
+	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
-enum // mouse clicks 
+enum // mouse clicks for macos 
 {
 	LEFT_CLICK = 1,
 	RIGHT_CLICK = 2,
@@ -43,6 +44,52 @@ enum // mouse clicks
 	SCROLL_BACKWARD = 4,
 	SCROLL_FORWARD = 5,
 };
+enum
+{
+	K_W = 13,
+	K_S = 1,
+	K_LEFT = 124,
+	K_UP = 125
+	K_RIGHT = 123,
+	K_DOWN = 126,
+};
+
+# elif __linux__ 
+#	include <mlx.h>
+#	include <X11/X.h>
+#	define WIN_WIDTH 800
+#	define WIN_HEIGHT 800
+#	define SCALE 4
+
+enum // events for macos 
+{
+	ON_KEYDOWN = KeyPress,
+	ON_KEYUP = KeyRelease,
+	ON_MOUSEDOWN = ButtonPress,
+	ON_MOUSEUP = ButtonRelease,
+	ON_MOUSEMOVE = MotionNotify,
+	ON_EXPOSE = Expose,
+	ON_DESTROY = DestroyNotify,
+};
+enum // mouse clicks for macos 
+{
+	M_LEFT_CLICK = 1,
+	M_RIGHT_CLICK = 2,
+	M_MIDDLE_CLICK = 3,
+	M_SCROLL_BACKWARD = 4,
+	M_SCROLL_FORWARD = 5,
+};
+enum
+{
+	K_W = 119,
+	K_S = 115,
+	K_LEFT = 65361,
+	K_UP = 65362,
+	K_RIGHT = 65363,
+	K_DOWN = 65364,
+	K_ESCP = 65307,
+};
+# endif
 typedef struct s_complex
 {
 	double real;
@@ -78,39 +125,41 @@ typedef struct s_image
 	int		pixels_per_line;
 	int		size_line;
 	int		endian;
-}	t_image;
+}	t_myimage;
 
-typedef struct s_main
+typedef struct s_m_struct
 {
 	void	*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
 	void	*win;
-	t_image	image;
+	t_myimage	image;
 	t_view	view;
 	t_complex z;
 	t_fractal fractal;
 	
-}	t_main;
+}	t_m_struct;
 
-void	init_data(t_main *data);
-void	init_img(t_main *data);
+void	init_data(t_m_struct *data);
+void	init_img(t_m_struct *data);
 
-void	event_init(t_main *data);
-int		handle_key_down(int key_code, t_main *data);
-int		handle_mouse_down(int mouse_down, int x, int y, t_main *data);
+void	event_mouse_init(t_m_struct *data);
+void	events_keys_init(t_m_struct *data);
+int		handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data);
+int		handle_key_down(int key_code, t_m_struct *data);
 
+void	put_pixel_to_image(t_m_struct *data, int x, int y, int color);
+void	view_init(t_m_struct *data);
+void	view_update(t_m_struct *data);
+void	render(t_m_struct *data);
+void	view_draw(t_m_struct *data);
+int		draw_square(t_complex z);
 
-void	put_pixel_to_image(t_main *data, int x, int y, int color);
-void	view_init(t_main *data);
-void	view_update(t_main *data);
-void	render(t_main *data);
-void	view_draw(t_main *data);
-int		draw_square(t_main *data, t_complex z);
+void	zoom(t_m_struct *data, int x, int y, int zoom);
 
 
 //int	check_limit_upper(int value, int limit_upper);
 //int check_limit_lower(int value, int limit_lower);
 
 
-void	ft_exit_fractol(t_main *data, char *error);
+void	ft_exit_fractol(t_m_struct *data, char *error);
 
 #endif
