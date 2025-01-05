@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:18:38 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 18:01:07 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/05 19:47:31 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	handle_key_down(int key_code, t_m_struct *data)
 {
 	if (key_code == K_W)
-		data->view.scale *= 0.99;
+		zoom(data, 1 + ZOOM);
 	if (key_code == K_S)
 		data->view.scale *= 1.01;
 	else if (key_code == K_RIGHT)
