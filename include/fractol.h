@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 19:03:01 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/04 17:36:37 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ enum // events
 {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
+	ON_MOUSEDOWN = 				4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
@@ -68,9 +68,9 @@ typedef struct s_view
 	double	pixel_to_view;
 }	t_view;
 
-typedef struct s_img
+typedef struct s_image
 {
-	void	*img;
+	void	*data;
 	void	*addr;
 	int		bitspp; // how many bits per pixel
 	int		bytespp; // how many bytes per pixel, 8 bits in 1 byte, 32/8 = 4
@@ -78,39 +78,39 @@ typedef struct s_img
 	int		pixels_per_line;
 	int		size_line;
 	int		endian;
-}	t_img;
+}	t_image;
 
-typedef struct s_data
+typedef struct s_main
 {
 	void	*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
 	void	*win;
-	t_img	image;
+	t_image	image;
 	t_view	view;
 	t_complex z;
 	t_fractal fractal;
 	
-}	t_data;
+}	t_main;
 
-void	init_data(t_data *data);
-void	init_img(t_data *data);
+void	init_data(t_main *data);
+void	init_img(t_main *data);
 
-void	event_init(t_data *data);
-int		handle_key_down(int key_code, t_data *data);
-int		handle_mouse_down(int mouse_down, int x, int y, t_data *data);
+void	event_init(t_main *data);
+int		handle_key_down(int key_code, t_main *data);
+int		handle_mouse_down(int mouse_down, int x, int y, t_main *data);
 
 
-void	put_pixel_to_image(t_data *data, int x, int y, int color);
-void	view_init(t_data *data);
-void	view_update(t_data *data);
-void	render(t_data *data);
-void	view_draw(t_data *data);
-int		draw_square(t_data *data, t_complex z);
+void	put_pixel_to_image(t_main *data, int x, int y, int color);
+void	view_init(t_main *data);
+void	view_update(t_main *data);
+void	render(t_main *data);
+void	view_draw(t_main *data);
+int		draw_square(t_main *data, t_complex z);
 
 
 //int	check_limit_upper(int value, int limit_upper);
 //int check_limit_lower(int value, int limit_lower);
 
 
-void	ft_exit_fractol(t_data *data, char *error);
+void	ft_exit_fractol(t_main *data, char *error);
 
 #endif

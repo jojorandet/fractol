@@ -6,16 +6,16 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/02 19:08:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/04 17:43:07 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	view_draw(t_data *data) //void(*get_color)(void))
+void	view_draw(t_main *data) //void(*get_color)(void))
 {
-	int 		x;
-	int 		y;
+	int			x;
+	int			y;
 	t_complex	z;
 	int			color;
 
@@ -24,7 +24,7 @@ void	view_draw(t_data *data) //void(*get_color)(void))
 	{
 		z.im = data->view.y[y];
 		x = 0;
-		while(x < WIN_WIDTH)
+		while (x < WIN_WIDTH)
 		{
 			z.real = data->view.x[x];
 			color = draw_square(data, z);
@@ -35,7 +35,7 @@ void	view_draw(t_data *data) //void(*get_color)(void))
 	}
 }
 
-void	view_init(t_data *data)
+void	view_init(t_main *data)
 {
 	if (!data)
 		ft_exit_fractol(data, "data is NULL");
@@ -45,10 +45,10 @@ void	view_init(t_data *data)
 	view_update(data);
 }
 
-void	view_update(t_data *data)
+void	view_update(t_main *data)
 {
 	int		i;
-	t_view *view;
+	t_view	*view;
 
 	view = &data->view;
 	view->pixel_to_view = view->scale / data->image.pixels_per_line;
