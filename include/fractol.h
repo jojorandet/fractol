@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 15:14:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 17:53:16 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 //# include "ft_printf.h
 # include <stdio.h>
 # include <math.h>
+
+
 
 # ifdef __APPLE__ // if it detects we are on mac
 # include <mlx.h>
@@ -54,6 +56,8 @@ enum
 	K_DOWN = 126,
 };
 
+
+
 # elif __linux__ 
 #	include <mlx.h>
 #	include <X11/X.h>
@@ -73,6 +77,7 @@ enum // events for macos
 	ON_EXPOSE		= Expose,
 	ON_DESTROY		= DestroyNotify,
 };
+
 enum // mouse clicks for macos 
 {
 	M_LEFT_CLICK		= 1,
@@ -81,6 +86,7 @@ enum // mouse clicks for macos
 	M_SCROLL_BACKWARD	= 4,
 	M_SCROLL_FORWARD	= 5,
 };
+
 enum
 {
 	K_W		= 119,
@@ -92,11 +98,17 @@ enum
 	K_ESCP	= 65307,
 };
 # endif
+
+
+
+
 typedef struct s_complex
 {
 	double real;
 	double im;
 }	t_complex;
+
+
 typedef struct s_view
 {
 	int		center_x;
@@ -106,6 +118,7 @@ typedef struct s_view
 	double	scale;
 	double	pixel_to_complex;
 }	t_view;
+
 
 typedef struct s_image
 {
@@ -119,6 +132,16 @@ typedef struct s_image
 	int		endian;
 }	t_myimage;
 
+
+typedef	struct s_fractal
+{
+	int			fractal_type;
+	t_complex 	c_julia;
+	int			iter_limit;
+	double		
+}	t_fractal;
+
+
 typedef struct s_m_struct
 {
 	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
@@ -126,9 +149,13 @@ typedef struct s_m_struct
 	t_myimage	image;
 	t_view		view;
 	t_complex 	z;
-	t_complex	c;
+	t_fractal	f;
 	
 }	t_m_struct;
+
+
+
+
 
 void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
@@ -153,5 +180,7 @@ void	zoom(t_m_struct *data, int x, int y, double zoom);
 float	ft_atof(char *s);
 
 void	ft_exit_fractol(t_m_struct *data, char *error);
+
+
 
 #endif
