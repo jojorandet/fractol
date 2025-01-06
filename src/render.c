@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 19:04:05 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 18:35:41 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	render(t_m_struct *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win, data->image.data, 0, 0);
 }
 
-static int// this function will give me hte coloutr
+
 //the colour depends on whether we are bounded or not
 // if it diverges, I will give it a color according to the value. 
 // i could have a table of colours

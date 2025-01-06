@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 15:17:48 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 20:38:29 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	view_draw(t_m_struct *data)
 		while (x < WIN_WIDTH)
 		{
 			z.real = data->view.real_coords[x];
-			color = get_color(data, z);
+			color = draw_square(z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}
@@ -57,7 +57,7 @@ void	view_update(t_m_struct *data)
 	render(data);
 }
 
-void	view_init(t_m_struct *data)
+void	view_init(t_m_struct *data) // view init depends on the result oif tge fractal set 
 {
 	if (!data)
 		ft_exit_fractol(data, "data is NULL");

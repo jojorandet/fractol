@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 18:18:11 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 21:20:45 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,31 +41,29 @@ void	init_fractol(t_m_struct *data)
 	init_img(data);
 }
 
-void	output_help()
+int	output_help()
 {
-
+	printf("wrong value!");
+	return (0);
 }
 
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
-	t_fractal	*f; //1 julia and all the rest is mandelbrot 
+	t_fractal	*f;
 
 	f = &data->f;
 	if (argc < 2 || argc > 4)
 		return (1);
 	f->fractal_type = ft_atoi(argv[1]);
-	if (f->fractal_type < 1 || f->fractal_type > 3) // 1 2 3 
+	if (f->fractal_type < 1 || f->fractal_type > 3)
 		return (1);
-	if (f->fractal_type != 1 && argc > 2) // if this is not julia and I have more than 2 arguments
-		return (1);
-	if (f->fractal_type == 1 && argc != 4)
-		return (1);
+	fractal_set(data);
 	if (f->fractal_type == 1 && argc == 4)
 	{
 		f->c_julia.real = ft_atof(argv[2]);
 		f->c_julia.im = ft_atof(argv[3]);
 	}
-	set_fractal(data); 
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -75,7 +73,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		ft_exit_fractol(NULL, "Please enter a valid number of arguments!");
 	if (parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
-		return(output_help());
+		return (output_help());
 	init_fractol(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);

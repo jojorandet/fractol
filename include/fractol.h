@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 17:53:16 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 21:08:43 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,11 @@ typedef struct s_image
 typedef	struct s_fractal
 {
 	int			fractal_type;
+	t_complex	c_center;
 	t_complex 	c_julia;
 	int			iter_limit;
-	double		
+	double		bailout_value;
+	void		(*iteration)(t_complex *z, t_complex *c); // function pointer for the rest of the fractal 
 }	t_fractal;
 
 
@@ -153,10 +155,7 @@ typedef struct s_m_struct
 	
 }	t_m_struct;
 
-
-
-
-
+void	fractal_set(t_m_struct *data);
 void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
 
