@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 18:51:26 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 15:31:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	julia(t_m_struct *data, t_complex *z, t_complex *c) // z and c are e
 {
 	double temp;
 
-	(void *)c; // c is not used in this case 
-	z = &data->z;
+	(void *)c; // c is not used in this case it is given by the user and will be used throughout the whole execution 
+	z = &data->c;
 	temp = (z->real * z->real) - (z->im * z->im) + data->c.real; //we take c from what was given to us (a constant)
 	z->im = 2.0 * (z->real * z->im) + data->c.im;
 	z->real = temp;
@@ -41,5 +41,5 @@ int	draw_square(t_complex z)
 	if (z.im > -1 && z.im < 1 && z.real > -1 && z.real < 1)
 		return (0xff0000);
 	else
-		return (0x000000);
+		return (0x000000); // this is black 
 }

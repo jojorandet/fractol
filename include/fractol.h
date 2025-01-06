@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 19:10:30 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 15:14:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ typedef struct s_view
 {
 	int		center_x;
 	int		center_y;
-	double	x[WIN_WIDTH];
-	double	y[WIN_HEIGHT];
+	double	real_coords[WIN_WIDTH];
+	double	imag_coords[WIN_HEIGHT];
 	double	scale;
-	double	pixel_to_view;
+	double	pixel_to_complex;
 }	t_view;
 
 typedef struct s_image

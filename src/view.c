@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 19:01:14 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/06 15:17:48 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	view_draw(t_m_struct *data)
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
-		z.im = data->view.y[y];
+		z.im = data->view.imag_coords[y];
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			z.real = data->view.x[x];
+			z.real = data->view.real_coords[x];
 			color = get_color(data, z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
@@ -41,17 +41,17 @@ void	view_update(t_m_struct *data)
 	t_view	*view;
 
 	view = &data->view;
-	view->pixel_to_view = view->scale / data->image.pixels_per_line;
+	view->pixel_to_complex = view->scale / data->image.pixels_per_line;
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
-		view->x[i] = (i - view->center_x) * view->pixel_to_view;
+		view->real_coords[i] = (i - view->center_x) * view->pixel_to_complex;
 		i++;
 	}
 	i = 0;
 	while (i < WIN_HEIGHT)
 	{
-		view->y[i] = -(i - view->center_y) * view->pixel_to_view;
+		view->imag_coords[i] = -(i - view->center_y) * view->pixel_to_complex;
 		i++;
 	}
 	render(data);
