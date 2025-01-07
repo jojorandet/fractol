@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 21:20:59 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 13:34:27 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	draw_square(t_complex z)
 		return (0x000000); // this is black 
 }
 
+//int	fractal_bound(t_m_struct *data, )
+
 void	fractal_set(t_m_struct *data)
 {
 	t_fractal *f;
@@ -47,9 +49,10 @@ void	fractal_set(t_m_struct *data)
 		ft_exit_fractol(data,"fractal type invvalid");
 	if (f->fractal_type == 1)
 	{
-		f->c_julia.real = -0.75;
+		printf("the julia type has been entered, entering function fractal set\n");
+		f->c_julia.real = -0.75; //these values are set in case the user does not input them 
 		f->c_julia.im = 0.0;
-		f->c_center.real = 0.0;
+		f->c_center.real = 0.0; //the fractal has its own center
 		f->c_center.im = 0.0;
 	}
 	if (f->fractal_type == 2)

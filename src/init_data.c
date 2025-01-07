@@ -6,17 +6,18 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:57:03 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 11:59:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 13:24:40 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol.h" // I need to initialise my structure before doing this 
 
 void	init_data(t_m_struct *data)
 {
 	if (!data)
 		return ;
 	ft_bzero(data, sizeof(t_m_struct));
+	printf("the value of c_julia.real is %f\n", data->f.c_julia.real);
 }
 //(*data).
 //data->

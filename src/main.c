@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 21:20:45 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 14:48:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,22 @@ int	output_help()
 
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
-	t_fractal	*f;
+	//t_fractal	*f;
 
-	f = &data->f;
+	//f = &data->f;
 	if (argc < 2 || argc > 4)
 		return (1);
-	f->fractal_type = ft_atoi(argv[1]);
-	if (f->fractal_type < 1 || f->fractal_type > 3)
+	data->f.fractal_type = ft_atoi(argv[1]); // i get the number of the fractal
+	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
 		return (1);
-	fractal_set(data);
-	if (f->fractal_type == 1 && argc == 4)
+	fractal_set(data); // I set the fractal, amd if they do not give e arguments I do it anyways 
+	if (data->f.fractal_type == 1 && argc == 4) // I come back here and if I do have values in arg3 and 4 then i update them 
 	{
-		f->c_julia.real = ft_atof(argv[2]);
-		f->c_julia.im = ft_atof(argv[3]);
+		printf("the value of the string argv2 is %s\n", argv[2]);
+		data->f.c_julia.real = ft_atof(argv[2]);
+		data->f.c_julia.im = ft_atof(argv[3]);
 	}
+	printf("the value of the c_julia.real is %.2f and c_imag is %.2f\n", data->f.c_julia.real, data->f.c_julia.im);
 	return (0);
 }
 
@@ -72,9 +74,9 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		ft_exit_fractol(NULL, "Please enter a valid number of arguments!");
+	init_fractol(&data);
 	if (parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
 		return (output_help());
-	init_fractol(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);
 	view_init(&data);

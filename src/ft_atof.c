@@ -6,34 +6,50 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:46:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 18:14:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:32:26 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+static	float ft_decimal(char *s)
+{
+	float	after;
+	float	decimal;
+
+	after = 0.0;
+	decimal = 0.1;
+	
+	while ('0' <= *s && *s <= '9')
+	{
+		after += (*s - 48) * decimal;
+		decimal *= 0.1;
+		s++;
+	}
+	return (after);
+}
+
 float	ft_atof(char *s)
 {
 	int		before;
-	int		after;
+	float	after;
 	int		sign;
-	int		count_decimal;
-	
+
 	before = 0;
+	after = 0.0;
 	sign = 1;
-	while (*s && ((9 <= *s && *s <= 13) || *s == ' '))
+
+	while (*s && ((*s >= 9 && *s <= 13) || *s == ' '))
 		s++;
-	while (*s == '-' || *s == '+')
+	if (*s == '-' || *s == '+')
 	{
-		if (*s == '-')
+		if (*s++ == '-')
 			sign *= -1;
-		s++;
 	}
 	before = ft_atoi(s);
-	after = 0;
-	if (*s == '.')
+	while ('0' <= *s && *s <= '9')
 		s++;
-	count_decimal = ft_strlen(s);
-	after = ft_atoi(s);
-	return (sign * (before + ((float)after * pow(10, -count_decimal))));
+	if (*(s++) == '.')
+		after = ft_decimal(s);
+	return (sign * (before + after));
 }
