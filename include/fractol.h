@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 21:08:43 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 18:08:42 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum
 #	define SCALE 4
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
+#	define PI 3.1432
 
 enum // events for macos 
 {
@@ -150,7 +151,6 @@ typedef struct s_m_struct
 	void		*win;
 	t_myimage	image;
 	t_view		view;
-	t_complex 	z;
 	t_fractal	f;
 	
 }	t_m_struct;

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 14:48:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 17:59:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 			mlx_destroy_image(data->mlx_ptr, data->image.data);
 		if (data->win)
 			mlx_destroy_window(data->mlx_ptr, data->win);
+		if (data->mlx_ptr)
+		{
+			free(data->mlx_ptr);
+			free(data);
+		}
 	}
 	if (error)
 	{
@@ -27,6 +32,52 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 		exit(EXIT_SUCCESS);
 	}
 	exit(EXIT_SUCCESS);
+}
+
+
+int output_help()
+{
+	printf("-----------------------------------------------------------------------------------------------\n");
+	printf("Input synthax:  ./fractol  [FRACTAL_TYPE]  [OPTIONAL_PARAMETERS]\n\n");
+	printf("Available fractal types:\n");
+	printf("-----------------------------------------------------------------------------------------------\n");
+	printf("  [1] - Julia Set\n");
+	printf("  [2] - Mandelbrot Set\n\n");
+	printf("(No need for square brakets)\n");
+	sleep(1);
+	printf("-----------------------------------------------------------------------------------------------\n");
+	printf("For Julia Set:\n");
+	printf("  ./fractol 1 [REAL] [IMAGINARY]\n");
+	printf("  REAL and IMAGINARY are optional float values for the c constant.\n");
+	printf("  If not provided, default values will be used.\n\n");
+	sleep(1);
+	printf("-----------------------------------------------------------------------------------------------\n");
+	printf("Examples of input:\n");
+	printf("  ./fractol 2					(Mandelbrot Set)\n");
+	printf("  ./fractol 1					(Julia Set with default c)\n");
+	printf("  ./fractol 1 -0.4 0.6			(Julia Set with c = -0.4 + 0.6i)\n\n");
+	printf("-----------------------------------------------------------------------------------------------\n");
+	printf("Tip: the Julia sets are most beautiful when the c.real and c.imag are between -2 and 2.\n");
+	printf("Note: Ensure all arguments are correctly formatted to avoid errors.\n");
+	printf("-----------------------------------------------------------------------------------------------\n");
+	return 0;
+}
+
+int	parse_arguments(t_m_struct *data, int argc, char **argv)
+{
+	if (argc < 2 || argc > 4)
+		return (1);
+	data->f.fractal_type = ft_atoi(argv[1]);
+	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
+		return (1);
+	fractal_set(data);
+	if (data->f.fractal_type == 1 && argc == 4)
+	{
+		data->f.c_julia.real = ft_atof(argv[2]);
+		data->f.c_julia.im = ft_atof(argv[3]);
+	}
+	//printf("the values of c_julia.real is %f and im %f\n", data->f.c_julia.real, data->f.c_julia.im);
+	return (0);
 }
 
 void	init_fractol(t_m_struct *data)
@@ -41,45 +92,16 @@ void	init_fractol(t_m_struct *data)
 	init_img(data);
 }
 
-int	output_help()
-{
-	printf("wrong value!");
-	return (0);
-}
-
-int	parse_arguments(t_m_struct *data, int argc, char **argv)
-{
-	//t_fractal	*f;
-
-	//f = &data->f;
-	if (argc < 2 || argc > 4)
-		return (1);
-	data->f.fractal_type = ft_atoi(argv[1]); // i get the number of the fractal
-	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
-		return (1);
-	fractal_set(data); // I set the fractal, amd if they do not give e arguments I do it anyways 
-	if (data->f.fractal_type == 1 && argc == 4) // I come back here and if I do have values in arg3 and 4 then i update them 
-	{
-		printf("the value of the string argv2 is %s\n", argv[2]);
-		data->f.c_julia.real = ft_atof(argv[2]);
-		data->f.c_julia.im = ft_atof(argv[3]);
-	}
-	printf("the value of the c_julia.real is %.2f and c_imag is %.2f\n", data->f.c_julia.real, data->f.c_julia.im);
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_m_struct	data;
 
-	if (argc < 2)
-		ft_exit_fractol(NULL, "Please enter a valid number of arguments!");
 	init_fractol(&data);
 	if (parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
 		return (output_help());
+	view_init(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);
-	view_init(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

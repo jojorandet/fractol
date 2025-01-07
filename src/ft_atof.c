@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 16:46:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 15:32:26 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 16:30:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,4 @@ float	ft_atof(char *s)
 		after = ft_decimal(s);
 	return (sign * (before + after));
 }
+

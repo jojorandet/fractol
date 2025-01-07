@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 20:38:29 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 18:04:31 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	view_draw(t_m_struct *data)
 		{
 			z.real = data->view.real_coords[x];
 			color = draw_square(z);
+			// color = get_color(data, z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}

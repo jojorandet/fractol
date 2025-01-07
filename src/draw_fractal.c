@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 13:34:27 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 17:54:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@
 	z->real = temp;
 }
 
-static void	mandelbrot(t_complex *z, t_complex *c) // z and c are eau, it is the first point you are calculatijng (first itteration)
-{
+static void	mandelbrot(t_complex *z, t_complex *c)
 	double temp;
 
-	temp = (z->real * z->real) - (z->im * z->im) + c->real; //we take c from what was given to us (a constant)
+	temp = (z->real * z->real) - (z->im * z->im) + c->real;
 	z->im = 2.0 * (z->real * z->im) + c->im;
 	z->real = temp;
 }*/
@@ -49,7 +48,6 @@ void	fractal_set(t_m_struct *data)
 		ft_exit_fractol(data,"fractal type invvalid");
 	if (f->fractal_type == 1)
 	{
-		printf("the julia type has been entered, entering function fractal set\n");
 		f->c_julia.real = -0.75; //these values are set in case the user does not input them 
 		f->c_julia.im = 0.0;
 		f->c_center.real = 0.0; //the fractal has its own center

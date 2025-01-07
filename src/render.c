@@ -6,11 +6,21 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 18:35:41 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/07 18:09:43 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	get_color(t_m_struct *data, t_complex *z)
+{
+	int color;
+	
+	color = 0;
+	calculate_fractal_color();
+	get_gradient();
+	return (color);
+}
 
 void	render(t_m_struct *data)
 {
