@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 18:08:42 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:01:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ enum
 #	define SCALE 4
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
-#	define PI 3.1432
-
+#	define MAX_ITER	250
 enum // events for macos 
 {
 	ON_KEYDOWN		= KeyPress,
@@ -102,13 +101,11 @@ enum
 
 
 
-
 typedef struct s_complex
 {
 	double real;
 	double im;
 }	t_complex;
-
 
 typedef struct s_view
 {
@@ -133,19 +130,23 @@ typedef struct s_image
 	int		endian;
 }	t_myimage;
 
+typedef struct s_m_struct t_m_struct;
 
+ //here we define the function pointer called t_iteration_func
+//need to place the functiopn definition lower so my compiler understands 
 typedef	struct s_fractal
 {
-	int			fractal_type;
-	t_complex	c_center;
-	t_complex 	c_julia;
-	int			iter_limit;
-	double		bailout_value;
-	void		(*iteration)(t_complex *z, t_complex *c); // function pointer for the rest of the fractal 
+	int					fractal_type;
+	t_complex			c_center;
+	t_complex 			c_julia; // trhis is the input
+	//int			iter_limit; //maybe this becomes a GV
+	void				(*iteration_f)(t_m_struct *data, t_complex *z, t_complex *c);
+	double				bailout_value; // this is the result of the function pointer 
+	double				magnitude;
+	t_complex			z;
 }	t_fractal;
 
-
-typedef struct s_m_struct
+struct s_m_struct
 {
 	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
 	void		*win;
@@ -153,7 +154,8 @@ typedef struct s_m_struct
 	t_view		view;
 	t_fractal	f;
 	
-}	t_m_struct;
+};
+
 
 void	fractal_set(t_m_struct *data);
 void	init_data(t_m_struct *data);
@@ -166,12 +168,16 @@ int		handle_key_down(int key_code, t_m_struct *data);
 
 void	put_pixel_to_image(t_m_struct *data, int x, int y, int color);
 void	view_init(t_m_struct *data);
+
+void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
 void	render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
-int		draw_square(t_complex z);
+int		get_color(t_m_struct *data, t_complex *z);
+int		calculate_fractal_color(t_m_struct *data, t_complex *z);
+double	magnitude(t_complex z);
+//int		draw_square(t_complex z);
 
-void	zoom(t_m_struct *data, int x, int y, double zoom);
 
 
 //int	check_limit_upper(int value, int limit_upper);

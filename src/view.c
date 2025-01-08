@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 18:04:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/08 18:00:46 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	view_draw(t_m_struct *data)
 		while (x < WIN_WIDTH)
 		{
 			z.real = data->view.real_coords[x];
-			color = draw_square(z);
-			// color = get_color(data, z);
+			//color = draw_square(z);
+			color = get_color(data, &z);
 			put_pixel_to_image(data, x, y, color);
 			x++;
 		}

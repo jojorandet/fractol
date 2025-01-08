@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/07 17:59:00 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/08 15:55:10 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 	if (data)
 	{
 		if (data->image.data)
+		{
 			mlx_destroy_image(data->mlx_ptr, data->image.data);
+			data->image.data = NULL; // prevents double freeing 
+		}
 		if (data->win)
+		{
 			mlx_destroy_window(data->mlx_ptr, data->win);
+			data->win = NULL; //prevents double freeing :-)
+		}
 		if (data->mlx_ptr)
 		{
+			mlx_destroy_display(data->mlx_ptr);
 			free(data->mlx_ptr);
-			free(data);
 		}
 	}
 	if (error)
 	{
 		printf("Error: %s!", error);
-		exit(EXIT_SUCCESS);
+		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);
 }
