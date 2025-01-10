@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/10 19:36:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 20:16:51 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	select_palette(t_m_struct *data)
 	t_fractal *f;
 
 	f = &data->f;
-	data->f.bailout_value 
 	if (f->magnitude < 4)
 		return (data->colours.a); // white
 	if (f->bailout_value < 5)

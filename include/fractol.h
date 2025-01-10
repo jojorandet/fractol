@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/10 19:23:14 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 20:17:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ enum
 # elif __linux__ 
 #	include <mlx.h>
 #	include <X11/X.h>
-#	define WIN_WIDTH 800
-#	define WIN_HEIGHT 800
+#	define WIN_WIDTH 400
+#	define WIN_HEIGHT 400
 #	define SCALE 4
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
@@ -98,6 +98,7 @@ enum
 	K_ESCP	= 65307,
 };
 # endif
+
 
 typedef	struct s_colors
 {
@@ -188,6 +189,7 @@ int		get_color(t_m_struct *data, t_complex *z);
 int		get_gradient(t_m_struct *data);
 void	init_colour(t_m_struct *data);
 int		select_palette(t_m_struct *data);
+
 //int		draw_square(t_complex z);
 
 
