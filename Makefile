@@ -4,12 +4,12 @@ DIR_BIN		=	./bin
 DIR_INCLUDE =	./include
 DIR_SRC 	=	./src
 
-SOURCES		=	main.c init_data.c init_img.c view.c math.c draw_fractal.c render.c events_mouse.c events_keys.c zoom.c ft_atof.c
+SOURCES		=	main.c init_data.c init_img.c view.c math.c draw_fractal.c render.c events_mouse.c events_keys.c zoom.c ft_atof.c color_fractal.c
 SOURCE_NAME	=	$(basename $(SOURCES))
 OBJECTS		= 	$(addsuffix .o, $(addprefix $(DIR_BIN)/, $(SOURCE_NAME)))
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 #CFLAGS = -g -fsanitize=address
 #FT_PRINTF	= ./include/ft_printf
 FT_LIBFT	= ./include/libft 

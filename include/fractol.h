@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/08 18:01:35 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 19:23:14 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,15 @@ enum
 };
 # endif
 
+typedef	struct s_colors
+{
+	int a;
+	int b;
+	int c;
+	int d;
+	int e;
+	int f;
+}	t_colors;
 
 
 typedef struct s_complex
@@ -137,11 +146,12 @@ typedef struct s_m_struct t_m_struct;
 typedef	struct s_fractal
 {
 	int					fractal_type;
-	t_complex			c_center;
-	t_complex 			c_julia; // trhis is the input
+	int					center_x;
+	int 				center_y;
+	t_complex 			c_constant; // trhis is the input
 	//int			iter_limit; //maybe this becomes a GV
 	void				(*iteration_f)(t_m_struct *data, t_complex *z, t_complex *c);
-	double				bailout_value; // this is the result of the function pointer 
+	int					bailout_value; // this is the result of the function pointer 
 	double				magnitude;
 	t_complex			z;
 }	t_fractal;
@@ -153,6 +163,7 @@ struct s_m_struct
 	t_myimage	image;
 	t_view		view;
 	t_fractal	f;
+	t_colors	colours;
 	
 };
 
@@ -174,8 +185,9 @@ void	view_update(t_m_struct *data);
 void	render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
 int		get_color(t_m_struct *data, t_complex *z);
-int		calculate_fractal_color(t_m_struct *data, t_complex *z);
-double	magnitude(t_complex z);
+int		get_gradient(t_m_struct *data);
+void	init_colour(t_m_struct *data);
+int		select_palette(t_m_struct *data);
 //int		draw_square(t_complex z);
 
 

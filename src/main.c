@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/08 15:55:10 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 19:18:58 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 	fractal_set(data);
 	if (data->f.fractal_type == 1 && argc == 4)
 	{
-		data->f.c_julia.real = ft_atof(argv[2]);
-		data->f.c_julia.im = ft_atof(argv[3]);
+		data->f.c_constant.real = ft_atof(argv[2]);
+		data->f.c_constant.im = ft_atof(argv[3]);
 	}
-	//printf("the values of c_julia.real is %f and im %f\n", data->f.c_julia.real, data->f.c_julia.im);
+	//printf("the values of c_constant.real is %f and im %f\n", data->f.c_constant.real, data->f.c_constant.im);
 	return (0);
 }
 
@@ -95,6 +95,7 @@ void	init_fractol(t_m_struct *data)
 	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test");
 	if (!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
+	init_colour(data);
 	init_img(data);
 }
 

@@ -6,44 +6,36 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/08 18:03:07 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 19:36:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	magnitude(t_complex z)
+static double	magnitude(t_complex z)
 {
  	return(z.real * z.real) + (z.im * z.im);
 }
 
-int	calculate_fractal_color(t_m_struct *data, t_complex *z)
+static void	calculate_iterator(t_m_struct *data, t_complex *z)
 {
-	int	color;
-
-	color = 0;
 	data->f.magnitude = 0.0;
 	data->f.bailout_value = 0.0;
 	data->f.z = *z;
-	while ( data->f.bailout_value < MAX_ITER && (4) && (data->f.magnitude < 4))
+	while ( data->f.bailout_value < MAX_ITER && (data->f.magnitude < 4))
 	{
 		data->f.iteration_f(data, &(data->f.z), z);
 		data->f.magnitude = magnitude(data->f.z);
 		data->f.bailout_value++;
 	}
-	if (data->f.magnitude < 4)
-		color = (0x000000);
-	if (data->f.magnitude > 4)
-		color = (0xffffff);
-	return (color);
 }
 
 int	get_color(t_m_struct *data, t_complex *z) // it might be a good idea to have the iteration in a structure so I can pass it around
 {
 	int		color;
 	
-	color = calculate_fractal_color(data, z); //bailouit value is a double in this case 
-	//color = get_gradient(data);
+	calculate_iterator(data, z); //bailouit value is a double in this case 
+	color = select_palette(data);
 	return (color);
 }
 

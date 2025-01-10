@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/08 18:00:46 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 17:54:18 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	view_init(t_m_struct *data) // view init depends on the result oif tge frac
 {
 	if (!data)
 		ft_exit_fractol(data, "data is NULL");
-	data->view.center_x = WIN_WIDTH / 2;
-	data->view.center_y = WIN_HEIGHT / 2;
+	data->view.center_x = data->f.center_x;
+	data->view.center_y = data->f.center_y;
 	data->view.scale = SCALE;
 	view_update(data);
 }

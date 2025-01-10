@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/08 16:36:19 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/10 19:14:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	julia(t_m_struct *data, t_complex *z, t_complex *c)
 	double temp;
 	(void)c; // I void c because in this case we use the one in my structure
 	
-	temp = (z->real * z->real) - (z->im * z->im) + data->f.c_julia.real;
-	z->im = 2.0 * (z->real * z->im) + data->f.c_julia.im;
+	temp = (z->real * z->real) - (z->im * z->im) + data->f.c_constant.real;
+	z->im = 2.0 * (z->real * z->im) + data->f.c_constant.im;
 	z->real = temp;
 }
 
@@ -48,18 +48,17 @@ void	fractal_set(t_m_struct *data)
 	f = &data->f;
 	if (f->fractal_type < 1 || f->fractal_type > 3)
 		ft_exit_fractol(data,"fractal type invvalid");
+	f->center_x = WIN_WIDTH / 2;
+	f->center_y = WIN_HEIGHT / 2;
 	if (f->fractal_type == 1)
 	{
-		f->c_julia.real = -0.75; //these values are set in case the user does not input them 
-		f->c_julia.im = 0.0;
-		f->c_center.real = 0.0; //the fractal has its own center
-		f->c_center.im = 0.0;
-		f->iteration_f = julia; // the function pointer variable points to the julia function
-	}//these functions have the samme signature as the function pointer we defined earlier 
+		f->c_constant.real = -0.75;
+		f->c_constant.im = 0.0;
+		f->iteration_f = julia;
+	}
 	if (f->fractal_type == 2)
 	{
-		f->c_center.real = -0.5;
-		f->c_center.im = 0.0;
-		f->iteration_f = mandelbrot; // the functuion poiner variable points to the mandelbrot function 
+		f->center_x = 2 * (WIN_WIDTH / 3);
+		f->iteration_f = mandelbrot;
 	}
 }
