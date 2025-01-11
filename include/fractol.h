@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/10 20:17:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/11 19:05:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ enum
 # elif __linux__ 
 #	include <mlx.h>
 #	include <X11/X.h>
-#	define WIN_WIDTH 400
-#	define WIN_HEIGHT 400
+#	define WIN_WIDTH 800
+#	define WIN_HEIGHT 800
 #	define SCALE 4
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
@@ -99,17 +99,27 @@ enum
 };
 # endif
 
+typedef union
+{
+	int	value;
+	struct
+	{
+		unsigned char r;
+		unsigned char g;
+		unsigned char b;
+		unsigned char a;
+	};
+}	t_color;
+
 
 typedef	struct s_colors
 {
-	int a;
-	int b;
-	int c;
-	int d;
-	int e;
-	int f;
+	t_color a;
+	t_color b;
+	t_color c;
+	t_color d;
+	t_color e;
 }	t_colors;
-
 
 typedef struct s_complex
 {
@@ -152,7 +162,7 @@ typedef	struct s_fractal
 	t_complex 			c_constant; // trhis is the input
 	//int			iter_limit; //maybe this becomes a GV
 	void				(*iteration_f)(t_m_struct *data, t_complex *z, t_complex *c);
-	int					bailout_value; // this is the result of the function pointer 
+	int					iter; // this is the result of the function pointer 
 	double				magnitude;
 	t_complex			z;
 }	t_fractal;
@@ -161,10 +171,11 @@ struct s_m_struct
 {
 	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
 	void		*win;
+	int 		final_color;
 	t_myimage	image;
 	t_view		view;
 	t_fractal	f;
-	t_colors	colours;
+	t_colors	colors;
 	
 };
 
@@ -172,23 +183,22 @@ struct s_m_struct
 void	fractal_set(t_m_struct *data);
 void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
+void	init_color(t_m_struct *data);
 
 void	event_mouse_init(t_m_struct *data);
 void	events_keys_init(t_m_struct *data);
 int		handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data);
 int		handle_key_down(int key_code, t_m_struct *data);
 
-void	put_pixel_to_image(t_m_struct *data, int x, int y, int color);
+void	put_pixel_to_image(t_m_struct *data, int x, int y);
 void	view_init(t_m_struct *data);
 
 void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
 void	render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
-int		get_color(t_m_struct *data, t_complex *z);
-int		get_gradient(t_m_struct *data);
-void	init_colour(t_m_struct *data);
-int		select_palette(t_m_struct *data);
+void		set_color(t_m_struct *data, t_complex *z);
+void	set_gradient(t_m_struct *data);
 
 //int		draw_square(t_complex z);
 

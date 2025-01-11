@@ -6,13 +6,13 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 19:16:39 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/05 18:01:59 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/11 17:12:51 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_pixel_to_image(t_m_struct *data, int x, int y, int color)
+void	put_pixel_to_image(t_m_struct *data, int x, int y)
 {
 	char		*dst;
 	long		pixel_offset;
@@ -27,7 +27,7 @@ void	put_pixel_to_image(t_m_struct *data, int x, int y, int color)
 		ft_exit_fractol(data, "Error: offset larger than image buffer.\n");
 	}
 	dst = img->addr + pixel_offset;
-	*(unsigned int *)dst = color;
+	*(unsigned int *)dst = data->final_color;
 }
 
 void	init_img(t_m_struct *data)
