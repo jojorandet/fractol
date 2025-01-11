@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/11 17:34:17 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/11 19:10:26 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 	exit(EXIT_SUCCESS);
 }
 
+static int	handle_destroy(t_m_struct *data)
+{
+	ft_exit_fractol(data, NULL);
+	return (0);
+}
 
 int output_help()
 {
@@ -109,6 +114,7 @@ int	main(int argc, char **argv)
 	view_init(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);
+	mlx_hook(data.win, DestroyNotify, 0, handle_destroy, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
