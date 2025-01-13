@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/11 19:04:09 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 11:58:59 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_gradient(t_m_struct *data)
 	f = &(data->f);
 	color = &(data->colors);
 	i = (float)(f->iter);
-	if (f->magnitude < 4)
+	if (f->magnitude < 4) // it will automatically color in the right color 
 	{
 		data->final_color = color->a.value;
 		return ;

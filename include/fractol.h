@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/11 19:05:00 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:13:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 //# include "ft_printf.h
 # include <stdio.h>
 # include <math.h>
+# include <time.h>
 
 
 
@@ -64,9 +65,9 @@ enum
 #	define WIN_WIDTH 800
 #	define WIN_HEIGHT 800
 #	define SCALE 4
-#	define ZOOM 0.2
+#	define ZOOM 0.5
 #	define COL_TAB_SIZE 16
-#	define MAX_ITER	250
+#	define MAX_ITER	100
 enum // events for macos 
 {
 	ON_KEYDOWN		= KeyPress,
@@ -197,7 +198,7 @@ void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
 void	render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
-void		set_color(t_m_struct *data, t_complex *z);
+void	set_color(t_m_struct *data, t_complex *z);
 void	set_gradient(t_m_struct *data);
 
 //int		draw_square(t_complex z);
