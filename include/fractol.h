@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 12:13:36 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:53:21 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ enum
 #	define WIN_WIDTH 800
 #	define WIN_HEIGHT 800
 #	define SCALE 4
-#	define ZOOM 0.5
+#	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
-#	define MAX_ITER	100
+#	define MAX_ITER	50
 enum // events for macos 
 {
 	ON_KEYDOWN		= KeyPress,
@@ -130,8 +130,8 @@ typedef struct s_complex
 
 typedef struct s_view
 {
-	int		center_x;
-	int		center_y;
+	double	center_x;
+	double 	center_y;
 	double	real_coords[WIN_WIDTH];
 	double	imag_coords[WIN_HEIGHT];
 	double	scale;
@@ -158,14 +158,15 @@ typedef struct s_m_struct t_m_struct;
 typedef	struct s_fractal
 {
 	int					fractal_type;
-	int					center_x;
-	int 				center_y;
+	double				center_x;
+	double 				center_y;
 	t_complex 			c_constant; // trhis is the input
 	//int			iter_limit; //maybe this becomes a GV
 	void				(*iteration_f)(t_m_struct *data, t_complex *z, t_complex *c);
 	int					iter; // this is the result of the function pointer 
 	double				magnitude;
 	t_complex			z;
+	double				smooth_iter;
 }	t_fractal;
 
 struct s_m_struct

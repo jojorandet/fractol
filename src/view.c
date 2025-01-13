@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 11:33:49 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:34:12 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	view_draw(t_m_struct *data)
 		{
 			z.real = data->view.real_coords[x];
 			set_color(data, &z); //in get color you obtain the colour in the structure 
-			put_pixel_to_image(data, x, y);
+			put_pixel_to_image(data, x, y); // here it is important that we send ints because the pixel grid is calculated in int 
 			x++;
 		}
 		y++;

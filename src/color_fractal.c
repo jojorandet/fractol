@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 11:58:59 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:39:36 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,26 @@ void	set_gradient(t_m_struct *data)
 {
 	t_fractal	*f;
 	t_colors	*color;
-	float		i;
+	double		i;
+	double		t;
+	int			colour_index;
 
 	f = &(data->f);
 	color = &(data->colors);
-	i = (float)(f->iter);
+	i = f->smooth_iter;
 	if (f->magnitude < 4) // it will automatically color in the right color 
 	{
 		data->final_color = color->a.value;
 		return ;
 	}
-	if (i <= 10)
-		data->final_color = color_interpol(color->e, color->d, i / 10);
-	else if (i <= 30)
-		data->final_color = color_interpol(color->d, color->c, (i - 10) / 20);
-	else if (i <= 50)
-		data->final_color = color_interpol(color->c, color->b, (i - 30) / 20);
+	t = (i - floor(i)); // floor will calculate the largestinteger calue that is not greater than x so here we get the fractional part 
+	colour_index = (int)floor(i) % 4;
+	if (colour_index == 0)
+		data->final_color = color_interpol(color->e, color->d, t);
+	else if (colour_index == 1)
+		data->final_color = color_interpol(color->d, color->c, t);
+	else if (colour_index == 2)
+		data->final_color = color_interpol(color->c, color->b, t);
 	else
 		data->final_color = color->b.value;
 }

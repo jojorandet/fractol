@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 12:10:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 14:58:16 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ static void	calculate_iterator(t_m_struct *data, t_complex *z)
 	data->f.magnitude = 0.0;
 	data->f.iter = 0;
 	data->f.z = *z;
-	while ( data->f.iter < MAX_ITER && (data->f.magnitude < 4))
+	while (data->f.iter < MAX_ITER && (data->f.magnitude < 4))
 	{
 		data->f.iteration_f(data, &(data->f.z), z);
 		data->f.magnitude = magnitude(data->f.z);
 		data->f.iter++; // bailout value is updated un thge structure while i am below max iter and my magnitud eis below 4 
 	}
+	if (data->f.iter < MAX_ITER)
+		data->f.smooth_iter = data->f.iter - 1 - log2(log2(sqrt(data->f.magnitude))) / log(2.0);
+	else
+		data->f.smooth_iter = data->f.iter; // if it is equal to max iteraiton, then the
 }
 
 void	set_color(t_m_struct *data, t_complex *z) // it might be a good idea to have the iteration in a structure so I can pass it around
