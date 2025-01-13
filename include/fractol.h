@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 14:53:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:36:02 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,19 @@ enum
 };
 # endif
 
+typedef	struct	s_hsl
+{
+	double hue; // hue from 0 to 3560
+	double sat; // sat from 0 to 100
+	double light; // light from 0 to 100
+}	t_hsl;
+
 typedef union
 {
 	int	value;
 	struct
 	{
-		unsigned char r;
+		unsigned char r; // range from 0 to 255
 		unsigned char g;
 		unsigned char b;
 		unsigned char a;
@@ -185,7 +192,7 @@ struct s_m_struct
 void	fractal_set(t_m_struct *data);
 void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
-void	init_color(t_m_struct *data);
+void	init_colors(t_m_struct *data);
 
 void	event_mouse_init(t_m_struct *data);
 void	events_keys_init(t_m_struct *data);
@@ -197,7 +204,7 @@ void	view_init(t_m_struct *data);
 
 void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
-void	render(t_m_struct *data);
+int		render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
 void	set_color(t_m_struct *data, t_complex *z);
 void	set_gradient(t_m_struct *data);

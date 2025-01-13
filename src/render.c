@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 14:58:16 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:21:48 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ void	set_color(t_m_struct *data, t_complex *z) // it might be a good idea to hav
 	set_gradient(data);
 }
 
-void	render(t_m_struct *data)
+int	render(t_m_struct *data)
 {
 	view_draw(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win, data->image.data, 0, 0);
+	return (0);
 }
 
 

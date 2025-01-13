@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 14:39:36 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:40:04 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static unsigned char	gradient(unsigned char color_a, unsigned char color_b, double ratio)
 {
-	return (color_a  + (color_b - color_a) * ratio);
+	int	diff_color;
+
+	diff_color = (int)color_a - (int)color_b;
+	return (unsigned char)((int)color_a  + diff_color *ratio);
 }
 
 static int	color_interpol(t_color color_a, t_color color_b, float ratio)
@@ -40,7 +43,7 @@ void	set_gradient(t_m_struct *data)
 
 	f = &(data->f);
 	color = &(data->colors);
-	i = f->smooth_iter;
+	i = (double)f->iter;
 	if (f->magnitude < 4) // it will automatically color in the right color 
 	{
 		data->final_color = color->a.value;
@@ -57,11 +60,22 @@ void	set_gradient(t_m_struct *data)
 	else
 		data->final_color = color->b.value;
 }
-void	init_color(t_m_struct *data)
+/*void	init_color(t_m_struct *data)
 {
 	data->colors.a.value = 0x19381F;
 	data->colors.b.value = 0xeee82c;
 	data->colors.c.value = 0x91cb3e;
 	data->colors.d.value = 0x53a548;
 	data->colors.e.value = 0x4c934c;
+}*/
+
+void	init_colors(t_m_struct *data)
+{
+	static int i;
+	data->colors = (t_colors[]){
+		{{.value = 0xF8E5E5}, {.value = 0xF2C4CE}, {.value = 0xE8B4BC}, 
+			{.value = 0xD9A5B3}, {.value = 0xC6878F}},
+		{{.value = 0xFF71CE}, {.value = 0xB967FF}, {.value = 0x01CDFE}, 
+			{.value = 0x05FFA1}, {.value = 0xFFFB96}}
+	}[i = (i + 1) % 2];
 }

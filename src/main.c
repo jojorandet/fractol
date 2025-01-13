@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 12:22:24 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:37:25 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	init_fractol(t_m_struct *data)
 	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test");
 	if (!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
-	init_color(data);
+	init_colors(data);
 	init_img(data);
 }
 
@@ -115,6 +115,7 @@ int	main(int argc, char **argv)
 	event_mouse_init(&data);
 	events_keys_init(&data);
 	mlx_hook(data.win, DestroyNotify, 0, handle_destroy, &data);
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

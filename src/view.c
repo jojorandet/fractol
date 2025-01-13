@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 12:34:12 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:26:31 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	view_draw(t_m_struct *data)
 	int			y;
 	t_complex	z;
 	
-	clock_t	begin = clock();
+	//clock_t	begin = clock();
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
@@ -33,8 +33,8 @@ void	view_draw(t_m_struct *data)
 		}
 		y++;
 	}
-	clock_t end = clock();
-	printf("time for view draw is %f seconds\n", (double)(end - begin) / CLOCKS_PER_SEC);
+	//clock_t end = clock();
+	//printf("time for view draw is %f seconds\n", (double)(end - begin) / CLOCKS_PER_SEC);
 }
 		
 void	view_update(t_m_struct *data)
