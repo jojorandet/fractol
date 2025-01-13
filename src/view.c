@@ -6,11 +6,17 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:26:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:50:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	request_render(t_m_struct *data)
+{
+	data->request_render = 1;
+	return (0);
+}
 
 void	view_draw(t_m_struct *data)
 {
@@ -60,8 +66,9 @@ void	view_update(t_m_struct *data)
 		view->imag_coords[i] = -i * view->pixel_to_complex + im_offset;
 		i++;
 	}
-	render(data);
+	request_render(data);
 }
+
 
 void	view_init(t_m_struct *data) // view init depends on the result oif tge fractal set 
 {

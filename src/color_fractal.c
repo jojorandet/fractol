@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:40:04 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:42:38 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,6 @@ void	set_gradient(t_m_struct *data)
 	else
 		data->final_color = color->b.value;
 }
-/*void	init_color(t_m_struct *data)
-{
-	data->colors.a.value = 0x19381F;
-	data->colors.b.value = 0xeee82c;
-	data->colors.c.value = 0x91cb3e;
-	data->colors.d.value = 0x53a548;
-	data->colors.e.value = 0x4c934c;
-}*/
 
 void	init_colors(t_m_struct *data)
 {

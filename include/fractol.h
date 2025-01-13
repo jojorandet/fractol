@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:36:02 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:05:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ enum
 #	define SCALE 4
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
-#	define MAX_ITER	50
+#	define MAX_ITER	250
 enum // events for macos 
 {
 	ON_KEYDOWN		= KeyPress,
@@ -181,6 +181,7 @@ struct s_m_struct
 	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
 	void		*win;
 	int 		final_color;
+	int			request_render;
 	t_myimage	image;
 	t_view		view;
 	t_fractal	f;
@@ -204,6 +205,7 @@ void	view_init(t_m_struct *data);
 
 void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
+int		request_render(t_m_struct *data);
 int		render(t_m_struct *data);
 void	view_draw(t_m_struct *data);
 void	set_color(t_m_struct *data, t_complex *z);
