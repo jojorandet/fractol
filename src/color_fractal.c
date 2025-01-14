@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:42:38 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:09:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 static unsigned char	gradient(unsigned char color_a, unsigned char color_b, double ratio)
 {
-	int	diff_color;
-
-	diff_color = (int)color_a - (int)color_b;
-	return (unsigned char)((int)color_a  + diff_color *ratio);
+	return (unsigned char)(color_a + ((int)color_b - (int)color_a) * ratio);
 }
 
 static int	color_interpol(t_color color_a, t_color color_b, float ratio)
 {
 	t_color color;
 
+	ratio = ratio * ratio * (3 - 2 * ratio); // used the smoothstep interpolation 
 	color.value = 0;
 	color.r = gradient(color_a.r, color_b.r, ratio);
 	color.g = gradient(color_a.g, color_b.g, ratio);
@@ -43,13 +41,14 @@ void	set_gradient(t_m_struct *data)
 
 	f = &(data->f);
 	color = &(data->colors);
-	i = (double)f->iter;
+	i = f->smooth_iter;
 	if (f->magnitude < 4) // it will automatically color in the right color 
 	{
 		data->final_color = color->a.value;
 		return ;
 	}
 	t = (i - floor(i)); // floor will calculate the largestinteger calue that is not greater than x so here we get the fractional part 
+	t = t * t * (3 - 2 * t);
 	colour_index = (int)floor(i) % 4;
 	if (colour_index == 0)
 		data->final_color = color_interpol(color->e, color->d, t);
@@ -58,16 +57,22 @@ void	set_gradient(t_m_struct *data)
 	else if (colour_index == 2)
 		data->final_color = color_interpol(color->c, color->b, t);
 	else
-		data->final_color = color->b.value;
+		data->final_color = color->d.value;
 }
 
-void	init_colors(t_m_struct *data)
+void	select_palette(t_m_struct *data)
 {
-	static int i;
-	data->colors = (t_colors[]){
-		{{.value = 0xF8E5E5}, {.value = 0xF2C4CE}, {.value = 0xE8B4BC}, 
-			{.value = 0xD9A5B3}, {.value = 0xC6878F}},
-		{{.value = 0xFF71CE}, {.value = 0xB967FF}, {.value = 0x01CDFE}, 
-			{.value = 0x05FFA1}, {.value = 0xFFFB96}}
-	}[i = (i + 1) % 2];
+	static int	colour_index = 0;
+
+	static const t_colors palettes[5] = {
+		{{0xced4da}, {0xadb5bd}, {0x6c757d}, {0x343a40}, {0x212529}},
+		{{0x132a13}, {0xecf39e}, {0x4f772d}, {0x31572c}, {0x90a955}},
+		{{0x051923}, {0x003554}, {0x006494}, {0x0582ca}, {0x00a6fb}},
+		{{0x000000}, {0xFF1493}, {0x8B008B}, {0x4B0082}, {0x800080}},
+		{{0xFF1493}, {0x7CFC00}, {0xFF4500}, {0x8A2BE2}, {0x00FFFF}}
+	};
+
+	if (colour_index == 5)
+		colour_index = 0;
+	data->colors = palettes[colour_index++];
 }

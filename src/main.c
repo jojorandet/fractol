@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:52:05 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 14:34:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int output_help()
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
 	if (argc < 2 || argc > 4)
-		return (1);
+		return (0);
 	data->f.fractal_type = ft_atoi(argv[1]);
 	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
-		return (1);
+		return (0);
 	fractal_set(data);
 	if (data->f.fractal_type == 1 && argc == 4)
 	{
@@ -88,10 +88,10 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 		data->f.c_constant.im = ft_atof(argv[3]);
 	}
 	//printf("the values of c_constant.real is %f and im %f\n", data->f.c_constant.real, data->f.c_constant.im);
-	return (0);
+	return (1);
 }
 
-void	init_fractol(t_m_struct *data)
+int	init_fractol(t_m_struct *data) // crucial function, it lays out the work for all the rest of the program 
 {
 	init_data(data);
 	data->mlx_ptr = mlx_init();
@@ -100,16 +100,19 @@ void	init_fractol(t_m_struct *data)
 	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test");
 	if (!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
-	init_colors(data);
+	select_palette(data);
 	init_img(data);
+	return (1); // means there is no error so far 
+	//with the return 1 i do not need to make other checks after 
 }
 
 int	main(int argc, char **argv)
 {
 	t_m_struct	data;
 
-	init_fractol(&data);
-	if (parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
+	if (!init_fractol(&data))
+		ft_exit_fractol(&data, "Failed to initialise fractol.");
+	if (!parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
 		return (output_help());
 	view_init(&data);
 	event_mouse_init(&data);

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:18:38 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/06 18:50:56 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 12:06:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ int	handle_key_down(int key_code, t_m_struct *data)
 	if (key_code == K_S)
 		data->view.scale *= 1.01;*/
 	if (key_code == K_RIGHT)
-		data->view.center_x -= 10;
+		data->view.center_x -= WIN_WIDTH / 8;
 	else if (key_code == K_LEFT)
-		data->view.center_x += 10;
+		data->view.center_x += WIN_WIDTH / 8;
 	else if (key_code == K_UP)
-		data->view.center_y += 10;
+		data->view.center_y += WIN_HEIGHT / 8;
 	else if (key_code == K_DOWN)
-		data->view.center_y -= 10;
+		data->view.center_y -= WIN_HEIGHT / 8;
+	else if (key_code == K_C)
+		select_palette(data);
 	if (key_code == K_ESCP)
 		ft_exit_fractol(data, "NO ERROR, window closed and freed");
 	view_update(data);

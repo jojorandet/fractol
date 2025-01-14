@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 18:05:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 12:05:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ enum
 	K_RIGHT	= 65363,
 	K_DOWN	= 65364,
 	K_ESCP	= 65307,
+	K_C		= 99,
 };
 # endif
 
@@ -193,7 +194,7 @@ struct s_m_struct
 void	fractal_set(t_m_struct *data);
 void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
-void	init_colors(t_m_struct *data);
+void	select_palette(t_m_struct *data);
 
 void	event_mouse_init(t_m_struct *data);
 void	events_keys_init(t_m_struct *data);

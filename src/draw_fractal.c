@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/10 19:14:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 14:42:46 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,11 @@ static void	mandelbrot(t_m_struct *data, t_complex *z, t_complex *c)
 	z->real = temp;
 }
 
-/*int	draw_square(t_complex z)
-{
-	if (z.im > -1 && z.im < 1 && z.real > -1 && z.real < 1)
-		return (0xff0000);
-	else
-		return (0x000000);
-}*/
-
-
 void	fractal_set(t_m_struct *data)
 {
 	t_fractal *f;
 	
 	f = &data->f;
-	if (f->fractal_type < 1 || f->fractal_type > 3)
-		ft_exit_fractol(data,"fractal type invvalid");
 	f->center_x = WIN_WIDTH / 2;
 	f->center_y = WIN_HEIGHT / 2;
 	if (f->fractal_type == 1)

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/13 17:50:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 14:33:39 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	view_update(t_m_struct *data)
 
 void	view_init(t_m_struct *data) // view init depends on the result oif tge fractal set 
 {
-	if (!data)
-		ft_exit_fractol(data, "data is NULL");
 	data->view.center_x = data->f.center_x;
 	data->view.center_y = data->f.center_y;
 	data->view.scale = SCALE;
 	view_update(data);
 }
+
+//what does view init depend on? which pointers does it depend on?
