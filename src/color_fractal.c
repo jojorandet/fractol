@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 19:08:17 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 15:09:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:36:40 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	color_interpol(t_color color_a, t_color color_b, float ratio)
 {
 	t_color color;
 
-	ratio = ratio * ratio * (3 - 2 * ratio); // used the smoothstep interpolation 
+	ratio = ratio * ratio * ratio * (3 - 2 * ratio); // used the smoothstep interpolation 
 	color.value = 0;
 	color.r = gradient(color_a.r, color_b.r, ratio);
 	color.g = gradient(color_a.g, color_b.g, ratio);
@@ -48,7 +48,7 @@ void	set_gradient(t_m_struct *data)
 		return ;
 	}
 	t = (i - floor(i)); // floor will calculate the largestinteger calue that is not greater than x so here we get the fractional part 
-	t = t * t * (3 - 2 * t);
+	//t = t * t * (3 - 2 * t);
 	colour_index = (int)floor(i) % 4;
 	if (colour_index == 0)
 		data->final_color = color_interpol(color->e, color->d, t);
@@ -66,10 +66,10 @@ void	select_palette(t_m_struct *data)
 
 	static const t_colors palettes[5] = {
 		{{0xced4da}, {0xadb5bd}, {0x6c757d}, {0x343a40}, {0x212529}},
-		{{0x132a13}, {0xecf39e}, {0x4f772d}, {0x31572c}, {0x90a955}},
+		{{0x03071e}, {0x370617}, {0x6a040f}, {0x9d0208}, {0xd00000}},
 		{{0x051923}, {0x003554}, {0x006494}, {0x0582ca}, {0x00a6fb}},
 		{{0x000000}, {0xFF1493}, {0x8B008B}, {0x4B0082}, {0x800080}},
-		{{0xFF1493}, {0x7CFC00}, {0xFF4500}, {0x8A2BE2}, {0x00FFFF}}
+		{{0x000000}, {0xDF73FF}, {0x8A2BE2}, {0x4169E1}, {0x7B68EE}}
 	};
 
 	if (colour_index == 5)
