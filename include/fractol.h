@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 12:05:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:40:12 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void	set_gradient(t_m_struct *data);
 //int	check_limit_upper(int value, int limit_upper);
 //int check_limit_lower(int value, int limit_lower);
 float	ft_atof(char *s);
+int		ft_is_int(char *s);
 
 void	ft_exit_fractol(t_m_struct *data, char *error);
 

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 18:30:53 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:01:08 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,14 @@ int output_help()
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
 	int i;
-	int j;
 
-	j = 0;
 	if (argc < 2 || argc > 4)
 		return (0);
 	i = 1;
-	while(argv[i] && i <= argc)
+	while(argv[i] && i < argc)
 	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (i == 1)
-			{
-				if (!ft_isdigit(argv[i][j]))
-					return (0);
-			}
-			else if (!ft_isdigit(argv[i][j]) && argv[i][j] != '.')
-				return (0); //different check if if it not just 1 
-			j++;
-		}
+		if (!ft_is_int(argv[i]))
+			return (0);
 		i++;
 	}
 	data->f.fractal_type = ft_atoi(argv[1]);
@@ -134,10 +122,10 @@ int	main(int argc, char **argv)
 {
 	t_m_struct	data;
 
-	if (!init_fractol(&data))
-		ft_exit_fractol(&data, "Failed to initialise fractol.");
 	if (!parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
 		return (output_help());
+	if (!init_fractol(&data))
+		ft_exit_fractol(&data, "Failed to initialise fractol.");
 	view_init(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);
