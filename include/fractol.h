@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 18:40:12 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:33 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,6 @@ struct s_m_struct
 
 
 void	fractal_set(t_m_struct *data);
-void	init_data(t_m_struct *data);
 void	init_img(t_m_struct *data);
 void	select_palette(t_m_struct *data);
 

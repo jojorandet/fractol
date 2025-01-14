@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 19:01:08 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:15 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 
 int	init_fractol(t_m_struct *data) // crucial function, it lays out the work for all the rest of the program 
 {
-	init_data(data);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_exit_fractol(data, "Error: Mlx unitialized, SGV!\n");
@@ -122,6 +121,7 @@ int	main(int argc, char **argv)
 {
 	t_m_struct	data;
 
+	ft_bzero(&data, sizeof(t_m_struct));
 	if (!parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
 		return (output_help());
 	if (!init_fractol(&data))
