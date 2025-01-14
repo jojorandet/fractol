@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 14:34:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:30:53 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ static int	handle_destroy(t_m_struct *data)
 int output_help()
 {
 	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("Input synthax:  ./fractol  [FRACTAL_TYPE]  [OPTIONAL_PARAMETERS]\n\n");
+	printf("!ERROR IN INPUT!\n\n");
+	printf("Input synthax:  ./fractol  [fractal_number] [float c.real value] [float c.im value]\n\n");
+	printf("All arguments must be numbers. If there is a letter, failure.\n");
 	printf("Available fractal types:\n");
 	printf("-----------------------------------------------------------------------------------------------\n");
 	printf("  [1] - Julia Set\n");
@@ -76,10 +78,33 @@ int output_help()
 
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
+	int i;
+	int j;
+
+	j = 0;
 	if (argc < 2 || argc > 4)
 		return (0);
+	i = 1;
+	while(argv[i] && i <= argc)
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (i == 1)
+			{
+				if (!ft_isdigit(argv[i][j]))
+					return (0);
+			}
+			else if (!ft_isdigit(argv[i][j]) && argv[i][j] != '.')
+				return (0); //different check if if it not just 1 
+			j++;
+		}
+		i++;
+	}
 	data->f.fractal_type = ft_atoi(argv[1]);
 	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
+		return (0);
+	if (data->f.fractal_type == 2 && argc > 2)
 		return (0);
 	fractal_set(data);
 	if (data->f.fractal_type == 1 && argc == 4)
@@ -87,7 +112,6 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 		data->f.c_constant.real = ft_atof(argv[2]);
 		data->f.c_constant.im = ft_atof(argv[3]);
 	}
-	//printf("the values of c_constant.real is %f and im %f\n", data->f.c_constant.real, data->f.c_constant.im);
 	return (1);
 }
 

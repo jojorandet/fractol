@@ -6,16 +6,11 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:56:26 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 15:03:41 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:21:11 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-/*static double	magnitude(t_complex z) // i access drectly inside mzy strucutre i do not need to de reference it 
-{
- 	return(z.real * z.real) + (z.im * z.im);
-}*/
 
 static int	is_in_bulb(double x, double y)
 {
