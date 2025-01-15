@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:48:23 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 19:38:46 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	mouse_move(int x, int y, t_m_struct *data)
 	{
 		f->c_constant.real = ((x - WIN_WIDTH / 2.0) / (WIN_WIDTH / 3.0));
 		f->c_constant.im = ((y - WIN_HEIGHT / 2.0) / (WIN_HEIGHT / 3.0));
+		printf("c.real: %f and c.im %f\n\n", f->c_constant.real, f->c_constant.im);
 		request_render(data);
 	}
 	return (0);

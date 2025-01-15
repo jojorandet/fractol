@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:55:53 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 19:14:56 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 	data->f.fractal_type = ft_atoi(argv[1]);
 	if (data->f.fractal_type < 1 || data->f.fractal_type > 3)
 		return (0);
-	if (data->f.fractal_type == 2 && argc > 2)
+	if ((data->f.fractal_type == 2  || data->f.fractal_type == 3) && argc > 2)
 		return (0);
 	fractal_set(data);
 	if (data->f.fractal_type == 1 && argc == 4)
