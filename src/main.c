@@ -6,84 +6,32 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 19:13:15 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:55:53 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_exit_fractol(t_m_struct *data, char *error)
+int	output_help(void)
 {
-	if (data)
-	{
-		if (data->image.data)
-		{
-			mlx_destroy_image(data->mlx_ptr, data->image.data);
-			data->image.data = NULL; // prevents double freeing 
-		}
-		if (data->win)
-		{
-			mlx_destroy_window(data->mlx_ptr, data->win);
-			data->win = NULL; //prevents double freeing :-)
-		}
-		if (data->mlx_ptr)
-		{
-			mlx_destroy_display(data->mlx_ptr);
-			free(data->mlx_ptr);
-		}
-	}
-	if (error)
-	{
-		printf("Error: %s!", error);
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
-}
-
-static int	handle_destroy(t_m_struct *data)
-{
-	ft_exit_fractol(data, NULL);
+	ft_putstr_fd("ERROR IN INPUT!\n\n", 1);
+	ft_putstr_fd("Usage: ./fractol [type] [c.real] [c.im]\n", 1);
+	ft_putstr_fd("Types: [1]Julia [2]Mandelbrot\n\n", 1);
+	ft_putstr_fd("Examples:\n", 1);
+	ft_putstr_fd("./fractol 2          (Mandelbrot)\n", 1);
+	ft_putstr_fd("./fractol 1 -0.4 0.6 (Julia)\n", 1);
+	ft_putstr_fd("\nJulia: c values between -2 and 2\n", 1);
 	return (0);
-}
-
-int output_help()
-{
-	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("!ERROR IN INPUT!\n\n");
-	printf("Input synthax:  ./fractol  [fractal_number] [float c.real value] [float c.im value]\n\n");
-	printf("All arguments must be numbers. If there is a letter, failure.\n");
-	printf("Available fractal types:\n");
-	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("  [1] - Julia Set\n");
-	printf("  [2] - Mandelbrot Set\n\n");
-	printf("(No need for square brakets)\n");
-	sleep(1);
-	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("For Julia Set:\n");
-	printf("  ./fractol 1 [REAL] [IMAGINARY]\n");
-	printf("  REAL and IMAGINARY are optional float values for the c constant.\n");
-	printf("  If not provided, default values will be used.\n\n");
-	sleep(1);
-	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("Examples of input:\n");
-	printf("  ./fractol 2					(Mandelbrot Set)\n");
-	printf("  ./fractol 1					(Julia Set with default c)\n");
-	printf("  ./fractol 1 -0.4 0.6			(Julia Set with c = -0.4 + 0.6i)\n\n");
-	printf("-----------------------------------------------------------------------------------------------\n");
-	printf("Tip: the Julia sets are most beautiful when the c.real and c.imag are between -2 and 2.\n");
-	printf("Note: Ensure all arguments are correctly formatted to avoid errors.\n");
-	printf("-----------------------------------------------------------------------------------------------\n");
-	return 0;
 }
 
 int	parse_arguments(t_m_struct *data, int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	if (argc < 2 || argc > 4)
 		return (0);
 	i = 1;
-	while(argv[i] && i < argc)
+	while (argv[i] && i < argc)
 	{
 		if (!ft_is_int(argv[i]))
 			return (0);
@@ -103,7 +51,7 @@ int	parse_arguments(t_m_struct *data, int argc, char **argv)
 	return (1);
 }
 
-int	init_fractol(t_m_struct *data) // crucial function, it lays out the work for all the rest of the program 
+int	init_fractol(t_m_struct *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
@@ -113,8 +61,7 @@ int	init_fractol(t_m_struct *data) // crucial function, it lays out the work for
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
 	select_palette(data);
 	init_img(data);
-	return (1); // means there is no error so far 
-	//with the return 1 i do not need to make other checks after 
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -122,7 +69,7 @@ int	main(int argc, char **argv)
 	t_m_struct	data;
 
 	ft_bzero(&data, sizeof(t_m_struct));
-	if (!parse_arguments(&data, argc, argv)) //this wll execute if non zero value 
+	if (!parse_arguments(&data, argc, argv))
 		return (output_help());
 	if (!init_fractol(&data))
 		ft_exit_fractol(&data, "Failed to initialise fractol.");

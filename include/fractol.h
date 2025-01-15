@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:38:19 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:52:18 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,9 @@ void	select_palette(t_m_struct *data);
 
 void	event_mouse_init(t_m_struct *data);
 void	events_keys_init(t_m_struct *data);
-int		handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data);
-int		handle_key_down(int key_code, t_m_struct *data);
+int		mouse_down(int mouse_down, int x, int y, t_m_struct *data);
+int		key_down(int key_code, t_m_struct *data);
+int		mouse_move(int x, int y, t_m_struct *data);
 
 void	put_pixel_to_image(t_m_struct *data, int x, int y);
 void	view_init(t_m_struct *data);
@@ -223,7 +224,7 @@ float	ft_atof(char *s);
 int		ft_is_int(char *s);
 
 void	ft_exit_fractol(t_m_struct *data, char *error);
-
+int		handle_destroy(t_m_struct *data);
 
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:44:37 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:48:23 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	handle_mousemove(int x, int y, t_m_struct *data)
+int	mouse_move(int x, int y, t_m_struct *data)
 {
 	t_fractal	*f;
 
@@ -26,7 +26,7 @@ int	handle_mousemove(int x, int y, t_m_struct *data)
 	return (0);
 }
 
-int	handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data)
+int	mouse_down(int mouse_down, int x, int y, t_m_struct *data)
 {
 	if (mouse_down == M_SCROLL_FORWARD)
 	{
@@ -43,6 +43,6 @@ int	handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data)
 
 void	event_mouse_init(t_m_struct *data)
 {
-	mlx_hook(data->win, ON_MOUSEDOWN, ButtonPressMask, handle_mouse_down, data);
-	mlx_hook(data->win, ON_MOUSEMOVE, PointerMotionMask, handle_mousemove, data);
+	mlx_hook(data->win, ON_MOUSEDOWN, ButtonPressMask, mouse_down, data);
+	mlx_hook(data->win, ON_MOUSEMOVE, PointerMotionMask, mouse_move, data);
 }

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:18:38 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:36:22 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:46:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	handle_key_up(int key_code, t_m_struct *data)
 	return (0);
 }
 
-int	handle_key_down(int key_code, t_m_struct *data)
+int	key_down(int key_code, t_m_struct *data)
 {
 	if (key_code == K_RIGHT)
 		data->view.center_x -= WIN_WIDTH / 8;
@@ -41,6 +41,6 @@ int	handle_key_down(int key_code, t_m_struct *data)
 
 void	events_keys_init(t_m_struct *data)
 {
-	mlx_hook(data->win, ON_KEYDOWN, KeyPressMask, handle_key_down, data);
+	mlx_hook(data->win, ON_KEYDOWN, KeyPressMask, key_down, data);
 	mlx_hook(data->win, ON_KEYUP, KeyReleaseMask, handle_key_up, data);
 }
