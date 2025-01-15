@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:28:10 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 14:33:39 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 19:01:24 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	view_draw(t_m_struct *data)
 	int			x;
 	int			y;
 	t_complex	z;
-	
-	//clock_t	begin = clock();
+
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
@@ -33,16 +32,14 @@ void	view_draw(t_m_struct *data)
 		while (x < WIN_WIDTH)
 		{
 			z.real = data->view.real_coords[x];
-			set_color(data, &z); //in get color you obtain the colour in the structure 
-			put_pixel_to_image(data, x, y); // here it is important that we send ints because the pixel grid is calculated in int 
+			set_color(data, &z);
+			put_pixel_to_image(data, x, y);
 			x++;
 		}
 		y++;
 	}
-	//clock_t end = clock();
-	//printf("time for view draw is %f seconds\n", (double)(end - begin) / CLOCKS_PER_SEC);
 }
-		
+
 void	view_update(t_m_struct *data)
 {
 	int		i;
@@ -53,7 +50,7 @@ void	view_update(t_m_struct *data)
 	view = &data->view;
 	view->pixel_to_complex = view->scale / data->image.pixels_per_line;
 	real_offset = -view->center_x * view->pixel_to_complex;
-	im_offset = view->center_y * view->pixel_to_complex; // pre calculate wiht the constants that do not vary 
+	im_offset = view->center_y * view->pixel_to_complex;
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
@@ -69,13 +66,10 @@ void	view_update(t_m_struct *data)
 	request_render(data);
 }
 
-
-void	view_init(t_m_struct *data) // view init depends on the result oif tge fractal set 
+void	view_init(t_m_struct *data)
 {
 	data->view.center_x = data->f.center_x;
 	data->view.center_y = data->f.center_y;
 	data->view.scale = SCALE;
 	view_update(data);
 }
-
-//what does view init depend on? which pointers does it depend on?
