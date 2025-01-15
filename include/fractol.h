@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 19:13:33 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 16:17:51 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ enum
 #	define ZOOM 0.2
 #	define COL_TAB_SIZE 16
 #	define MAX_ITER	250
+#	define MIN_SCALE 1.5
 enum // events for macos 
 {
 	ON_KEYDOWN		= KeyPress,
@@ -98,14 +99,15 @@ enum
 	K_DOWN	= 65364,
 	K_ESCP	= 65307,
 	K_C		= 99,
+	K_CTRL = 65507,
 };
 # endif
 
 typedef	struct	s_hsl
 {
-	double hue; // hue from 0 to 3560
-	double sat; // sat from 0 to 100
-	double light; // light from 0 to 100
+	double hue;
+	double sat;
+	double light;
 }	t_hsl;
 
 typedef union
@@ -113,7 +115,7 @@ typedef union
 	int	value;
 	struct
 	{
-		unsigned char r; // range from 0 to 255
+		unsigned char r;
 		unsigned char g;
 		unsigned char b;
 		unsigned char a;
@@ -151,8 +153,8 @@ typedef struct s_image
 {
 	void	*data;
 	void	*addr;
-	int		bitspp; // how many bits per pixel
-	int		bytespp; // how many bytes per pixel, 8 bits in 1 byte, 32/8 = 4
+	int		bitspp;
+	int		bytespp;
 	int		total_bytes;
 	int		pixels_per_line;
 	int		size_line;
@@ -161,17 +163,14 @@ typedef struct s_image
 
 typedef struct s_m_struct t_m_struct;
 
- //here we define the function pointer called t_iteration_func
-//need to place the functiopn definition lower so my compiler understands 
 typedef	struct s_fractal
 {
 	int					fractal_type;
 	double				center_x;
 	double 				center_y;
-	t_complex 			c_constant; // trhis is the input
-	//int			iter_limit; //maybe this becomes a GV
+	t_complex 			c_constant;
 	void				(*iteration_f)(t_m_struct *data, t_complex *z, t_complex *c);
-	int					iter; // this is the result of the function pointer 
+	int					iter; 
 	double				magnitude;
 	t_complex			z;
 	double				smooth_iter;
@@ -179,10 +178,11 @@ typedef	struct s_fractal
 
 struct s_m_struct
 {
-	void		*mlx_ptr; //a void pointer that contains the base_address returned by mlx_init() 
+	void		*mlx_ptr;
 	void		*win;
 	int 		final_color;
 	int			request_render;
+	int			is_control_pressed;
 	t_myimage	image;
 	t_view		view;
 	t_fractal	f;
@@ -190,19 +190,26 @@ struct s_m_struct
 	
 };
 
-
+//intitialise and parse
 void	fractal_set(t_m_struct *data);
 void	init_img(t_m_struct *data);
 void	select_palette(t_m_struct *data);
+float	ft_atof(char *s);
+int		ft_is_int(char *s);
 
+//mouse
 void	event_mouse_init(t_m_struct *data);
-void	events_keys_init(t_m_struct *data);
+int		handle_mousemove(int x, int y, t_m_struct *data);
 int		handle_mouse_down(int mouse_down, int x, int y, t_m_struct *data);
-int		handle_key_down(int key_code, t_m_struct *data);
 
+//keys
+void	events_keys_init(t_m_struct *data);
+int		handle_key_down(int key_code, t_m_struct *data);
+int		handle_key_up(int key_code, t_m_struct *data);
+
+//rendering
 void	put_pixel_to_image(t_m_struct *data, int x, int y);
 void	view_init(t_m_struct *data);
-
 void	zoom(t_m_struct *data, int x, int y, double zoom);
 void	view_update(t_m_struct *data);
 int		request_render(t_m_struct *data);
@@ -211,17 +218,7 @@ void	view_draw(t_m_struct *data);
 void	set_color(t_m_struct *data, t_complex *z);
 void	set_gradient(t_m_struct *data);
 
-//int		draw_square(t_complex z);
-
-
-
-//int	check_limit_upper(int value, int limit_upper);
-//int check_limit_lower(int value, int limit_lower);
-float	ft_atof(char *s);
-int		ft_is_int(char *s);
 
 void	ft_exit_fractol(t_m_struct *data, char *error);
-
-
 
 #endif

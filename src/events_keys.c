@@ -6,11 +6,18 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 13:18:38 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 12:06:20 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 11:39:26 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	handle_key_up(int key_code, t_m_struct *data)
+{
+	if (key_code == K_CTRL)
+		data->is_control_pressed = 0;
+	return (0);
+}
 
 int	handle_key_down(int key_code, t_m_struct *data)
 {
@@ -28,6 +35,8 @@ int	handle_key_down(int key_code, t_m_struct *data)
 		data->view.center_y -= WIN_HEIGHT / 8;
 	else if (key_code == K_C)
 		select_palette(data);
+	else if (key_code == K_CTRL)
+		data->is_control_pressed = 1;
 	if (key_code == K_ESCP)
 		ft_exit_fractol(data, "NO ERROR, window closed and freed");
 	view_update(data);
@@ -37,4 +46,5 @@ int	handle_key_down(int key_code, t_m_struct *data)
 void	events_keys_init(t_m_struct *data)
 {
 	mlx_hook(data->win, ON_KEYDOWN, KeyPressMask, handle_key_down, data);
+	mlx_hook(data->win, ON_KEYUP, KeyReleaseMask, handle_key_up, data);
 }
