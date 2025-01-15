@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 16:32:38 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:36:39 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int	handle_mousemove(int x, int y, t_m_struct *data)
 {
-	t_fractal *f;
-	//t_view *view;
+	t_fractal	*f;
 
 	f = &data->f;
-	//view = &data->view;
-	if (data->is_control_pressed) //&& data->view.scale > MIN_SCALE)
+	if (data->is_control_pressed)
 	{
-		f->c_constant.real = ((x - WIN_WIDTH / 2.0) / (WIN_WIDTH / 3.0));// * view->pixel_to_complex);
+		f->c_constant.real = ((x - WIN_WIDTH / 2.0) / (WIN_WIDTH / 3.0));
 		f->c_constant.im = ((y - WIN_HEIGHT / 2.0) / (WIN_HEIGHT / 3.0));//* view->pixel_to_complex);
-		request_render(data); // says i am ready to
+		request_render(data);
 	}
 	return (0);
 }
