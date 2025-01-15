@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/14 14:42:46 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:44:23 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	julia(t_m_struct *data, t_complex *z, t_complex *c)
 {
-	double temp;
-	(void)c; // I void c because in this case we use the one in my structure
-	
+	double	temp;
+
+	(void)c;
 	temp = (z->real * z->real) - (z->im * z->im) + data->f.c_constant.real;
 	z->im = 2.0 * (z->real * z->im) + data->f.c_constant.im;
 	z->real = temp;
@@ -24,9 +24,9 @@ static void	julia(t_m_struct *data, t_complex *z, t_complex *c)
 
 static void	mandelbrot(t_m_struct *data, t_complex *z, t_complex *c)
 {
-	double temp;
-	(void)data;
+	double	temp;
 
+	(void)data;
 	temp = (z->real * z->real) - (z->im * z->im) + c->real;
 	z->im = 2.0 * (z->real * z->im) + c->im;
 	z->real = temp;
@@ -34,8 +34,8 @@ static void	mandelbrot(t_m_struct *data, t_complex *z, t_complex *c)
 
 void	fractal_set(t_m_struct *data)
 {
-	t_fractal *f;
-	
+	t_fractal	*f;
+
 	f = &data->f;
 	f->center_x = WIN_WIDTH / 2;
 	f->center_y = WIN_HEIGHT / 2;
