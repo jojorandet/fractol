@@ -82,7 +82,7 @@ typedef struct	s_win_list
 }				t_win_list;
 
 
-typedef struct	s_image
+typedef struct	s_img
 {
 	XImage			*image;
 	Pixmap			pix;
@@ -95,7 +95,7 @@ typedef struct	s_image
 	int				format;
 	char			*data;
 	XShmSegmentInfo	shm;
-}				t_myimage;
+}				t_img;
 
 typedef struct	s_xvar
 {
