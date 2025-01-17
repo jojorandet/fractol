@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/17 15:37:00 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:54:22 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	init_fractol(t_m_struct *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_exit_fractol(data, "Error: Mlx unitialized, SGV!\n");
-	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "test");
+	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fractol-jojo");
 	if (!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
 	select_palette(data);
