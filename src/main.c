@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/17 16:54:22 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/18 12:27:25 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 int	output_help(void)
 {
-	ft_putstr("\n\n====== HELP FOR EXECUTING THE FRACTOL PROGRAM: =======\n\n");
-	ft_putstr("Please enter the following in the terminal:\n\n");
-	ft_putstr("./fractol [type]                 (for Mandelbrot)\n");
-	ft_putstr("./fractol [type] [c.real] [c.im] (for Julia)\n\n");
-	ft_putstr("================= AVAILABLE FRACTALS: ================\n\n");
-	ft_putstr("[1] Julia Set\n");
-	ft_putstr("    - Requires complex constant (c) values of type float\n");
-	ft_putstr("    - Creates different patterns based on c values entered\n\n");
-	ft_putstr("[2] Mandelbrot Set\n");
-	ft_putstr("    - No additional (c) values needed\n");
-	ft_putstr("    - Classical fractal, no interaction\n\n");
-	ft_putstr("====================== EXAMPLES: =====================\n\n");
-	ft_putstr("./fractol 2              (Mandelbrot)\n");
-	ft_putstr("./fractol 1 -0.4 0.6     (Julia)\n");
-	ft_putstr("Julia: c values should be between -2 and 2\n\n");
-	ft_putstr("====================== CONTROLS: =====================\n\n");
-	ft_putstr("Mouse wheel:             Zoom in and zoom out\n");
-	ft_putstr("Arrow keys:              Move up, down, right, left\n");
-	ft_putstr("Key C:                   Change the colour of the fractal\n");
-	ft_putstr("CTRL + Mouse movement:   Change Julia pattern.\n");
-	ft_putstr("Key ESC:                 Exit Program\n\n");
+	ft_printf("\n\n====== HELP FOR EXECUTING THE FRACTOL PROGRAM: =======\n\n");
+	ft_printf("Please enter the following in the terminal:\n\n");
+	ft_printf("./fractol [type]                 (for Mandelbrot)\n");
+	ft_printf("./fractol [type] [c.real] [c.im] (for Julia)\n\n");
+	ft_printf("================= AVAILABLE FRACTALS: ================\n\n");
+	ft_printf("[1] Julia Set\n");
+	ft_printf("    - Requires complex constant (c) values of type float\n");
+	ft_printf("    - Creates different patterns based on c values entered\n\n");
+	ft_printf("[2] Mandelbrot Set\n");
+	ft_printf("    - No additional (c) values needed\n");
+	ft_printf("    - Classical fractal, no interaction\n");
+	ft_printf("[3] Tricorn Set\n\n");
+	ft_printf("====================== EXAMPLES: =====================\n\n");
+	ft_printf("./fractol 2              (Mandelbrot 2 or Tricorn 3)\n");
+	ft_printf("./fractol 1 -0.4 0.6     (Julia)\n");
+	ft_printf("Julia: c values should be between -2 and 2\n\n");
+	ft_printf("====================== CONTROLS: =====================\n\n");
+	ft_printf("Mouse wheel:             Zoom in and zoom out\n");
+	ft_printf("Arrow keys:              Move up, down, right, left\n");
+	ft_printf("Key C:                   Change the colour of the fractal\n");
+	ft_printf("CTRL + Mouse movement:   Change Julia pattern.\n");
+	ft_printf("Key ESC:                 Exit Program\n\n");
 	return (0);
 }
 
@@ -70,7 +71,7 @@ int	init_fractol(t_m_struct *data)
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		ft_exit_fractol(data, "Error: Mlx unitialized, SGV!\n");
-	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "fractol-jojo");
+	data->win = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "jojo");
 	if (!data->win)
 		ft_exit_fractol(data, "Error: Win not initialized, SGV\n!");
 	select_palette(data);

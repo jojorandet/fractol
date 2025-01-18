@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:48:47 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/15 18:55:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/18 12:22:48 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 	}
 	if (error)
 	{
-		printf("Error: %s!", error);
+		ft_putstr("Error!\n");
 		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);
