@@ -2,3 +2,4 @@ leaks.log
 *.o
 *.a
 fractol
+*.d
