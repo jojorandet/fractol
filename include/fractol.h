@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/18 12:28:30 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/20 14:31:17 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include "libft.h"
 # include "ft_printf.h"
-//# include "ft_printf.h
-# include <stdio.h>
 # include <math.h>
 # include <time.h>
 

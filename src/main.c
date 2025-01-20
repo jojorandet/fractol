@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/18 12:27:25 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/20 14:24:04 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	output_help(void)
 {
 	ft_printf("\n\n====== HELP FOR EXECUTING THE FRACTOL PROGRAM: =======\n\n");
 	ft_printf("Please enter the following in the terminal:\n\n");
-	ft_printf("./fractol [type]                 (for Mandelbrot)\n");
+	ft_printf("./fractol [type]                 (for Mandelbrot and Tricorn)\n");
 	ft_printf("./fractol [type] [c.real] [c.im] (for Julia)\n\n");
 	ft_printf("================= AVAILABLE FRACTALS: ================\n\n");
 	ft_printf("[1] Julia Set\n");
@@ -24,12 +24,13 @@ int	output_help(void)
 	ft_printf("    - Creates different patterns based on c values entered\n\n");
 	ft_printf("[2] Mandelbrot Set\n");
 	ft_printf("    - No additional (c) values needed\n");
-	ft_printf("    - Classical fractal, no interaction\n");
+	ft_printf("    - Classical fractal, no interaction\n\n");
 	ft_printf("[3] Tricorn Set\n\n");
 	ft_printf("====================== EXAMPLES: =====================\n\n");
-	ft_printf("./fractol 2              (Mandelbrot 2 or Tricorn 3)\n");
+	ft_printf("./fractol 2              (Mandelbrot 2 or Tricorn 3)\n\n");
 	ft_printf("./fractol 1 -0.4 0.6     (Julia)\n");
 	ft_printf("Julia: c values should be between -2 and 2\n\n");
+	ft_printf("./fractol 3              (Tricorn)\n\n");
 	ft_printf("====================== CONTROLS: =====================\n\n");
 	ft_printf("Mouse wheel:             Zoom in and zoom out\n");
 	ft_printf("Arrow keys:              Move up, down, right, left\n");
