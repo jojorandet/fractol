@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 16:50:57 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/17 10:38:14 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/20 14:43:15 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	fractal_set(t_m_struct *data)
 	t_fractal	*f;
 
 	f = &data->f;
-	f->center_x = WIN_WIDTH / 2;
-	f->center_y = WIN_HEIGHT / 2;
+	f->center_x = WIN_WIDTH >> 1;
+	f->center_y = WIN_HEIGHT >> 1;
 	if (f->fractal_type == 1)
 	{
 		f->c_constant.real = -0.78;
@@ -64,9 +64,9 @@ void	fractal_set(t_m_struct *data)
 	}
 	if (f->fractal_type == 3)
 	{
-		f->center_x = WIN_WIDTH / 2;
-		f->center_y = WIN_HEIGHT / 2;
-		data->view.scale = SCALE * 2;
+		f->center_x = WIN_WIDTH >> 1;
+		f->center_y = WIN_HEIGHT >> 1;
+		data->view.scale = SCALE << 1;
 		f->iteration_f = tricorn;
 	}
 }
