@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 12:51:13 by jrandet           #+#    #+#             */
-/*   Updated: 2024/10/23 15:58:26 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/20 14:18:21 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 int		ft_printf(const char *s, ...);
 void	tests(int *count, const char *c, va_list args);
-void	ft_putchar(char c, int *count);
-void	ft_putstr(char *s, int *count);
+void	ft_putchar_printf(char c, int *count);
+void	ft_putstr_printf(char *s, int *count);
 void	ft_pointers(unsigned long ptr, char *base, \
 		unsigned int base_len, int *count);
 void	ft_rputnbr_base(unsigned long n, char *base, \
