@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:48:47 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/20 14:21:44 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/22 13:36:28 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ void	ft_exit_fractol(t_m_struct *data, char *error)
 			mlx_destroy_window(data->mlx_ptr, data->win);
 			data->win = NULL;
 		}
+		#ifdef __linux__
 		if (data->mlx_ptr)
 		{
 			mlx_destroy_display(data->mlx_ptr);
 			free(data->mlx_ptr);
 		}
+		#elif __APPLE__
+		if (data->mlx_ptr)
+		{
+			free(data->mlx_ptr);
+		}
+		#endif
 	}
 	if (error)
 	{

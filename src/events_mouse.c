@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_mouse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 17:28:20 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/17 10:38:33 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/22 13:34:49 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	mouse_down(int mouse_down, int x, int y, t_m_struct *data)
 	return (0);
 }
 
-void	event_mouse_init(t_m_struct *data)
+void    event_mouse_init(t_m_struct *data)
 {
-	mlx_hook(data->win, ON_MOUSEDOWN, ButtonPressMask, mouse_down, data);
-	mlx_hook(data->win, ON_MOUSEMOVE, PointerMotionMask, mouse_move, data);
+    mlx_hook(data->win, ON_MOUSEDOWN, 1L<<2, mouse_down, data);
+    mlx_hook(data->win, ON_MOUSEMOVE, 1L<<6, mouse_move, data);
 }

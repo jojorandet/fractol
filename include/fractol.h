@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:31:28 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/20 14:31:17 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/22 13:33:42 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,49 @@
 
 
 
-# ifdef __APPLE__ // if it detects we are on mac
-# include <mlx.h>
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 800 //to do: check why this does not update
-# define SCALE 4
+# ifdef __APPLE__
+#  include <mlx.h>
+#  define WIN_WIDTH 800
+#  define WIN_HEIGHT 800
+#  define SCALE 4
+#  define ZOOM 0.2
+#  define COL_TAB_SIZE 16
+#  define MAX_ITER 250
 
 enum // events for macos 
 {
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
-};
-enum // mouse clicks for macos 
-{
-	LEFT_CLICK = 1,
-	RIGHT_CLICK = 2,
-	MIDDLE_CLICK = 3,
-	SCROLL_BACKWARD = 4,
-	SCROLL_FORWARD = 5,
-};
-enum
-{
-	K_W = 13,
-	K_S = 1,
-	K_LEFT = 124,
-	K_UP = 125
-	K_RIGHT = 123,
-	K_DOWN = 126,
+    ON_KEYDOWN = 2,
+    ON_KEYUP = 3,
+    ON_MOUSEDOWN = 4,
+    ON_MOUSEUP = 5,
+    ON_MOUSEMOVE = 6,
+    ON_EXPOSE = 12,
+    ON_DESTROY = 17
 };
 
+enum // mouse clicks for macos 
+{
+    M_LEFT_CLICK = 1,
+    M_RIGHT_CLICK = 2,
+    M_MIDDLE_CLICK = 3,
+    M_SCROLL_BACKWARD = 4,
+    M_SCROLL_FORWARD = 5
+};
+
+enum
+{
+    K_W = 13,
+    K_S = 1,
+    K_A = 0,
+    K_D = 2,
+    K_LEFT = 123,    // Changed from 124
+    K_RIGHT = 124,   // Changed from 123
+    K_UP = 126,      // Changed from 125
+    K_DOWN = 125,    // Changed from 126
+    K_ESCP = 53,
+    K_C = 8,
+    K_CTRL = 256
+};
 
 
 # elif __linux__ 

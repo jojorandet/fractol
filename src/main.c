@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:35:33 by jrandet           #+#    #+#             */
-/*   Updated: 2025/01/20 14:24:04 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/01/22 13:40:25 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ int	main(int argc, char **argv)
 	view_init(&data);
 	event_mouse_init(&data);
 	events_keys_init(&data);
-	mlx_hook(data.win, DestroyNotify, 0, handle_destroy, &data);
+	#ifdef __linux__
+		mlx_hook(data.win, DestroyNotify, 0, handle_destroy, &data);
+	#elif __APPLE__
+		mlx_hook(data.win, 29, 0, handle_destroy, &data);
+	#endif
 	mlx_loop_hook(data.mlx_ptr, render, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
